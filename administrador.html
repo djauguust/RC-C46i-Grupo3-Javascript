@@ -34,7 +34,7 @@
           <p class="fs-2 bg-warning">Agregar Producto</p>
 
           <!-- Formulario de Agregar Producto -->
-          <form>
+          <form class="needs-validation" novalidate>
             <fieldset disabled>
               <div class="mb-3">
                 <label for="codigo">
@@ -58,7 +58,12 @@
                 type="text"
                 placeholder="Remera meme Majin Boo vs Gohan con la realidad alterada"
                 id="nombre1"
+                required
               />
+              <div class="valid-feedback">¡Luce bien!</div>
+              <div class="invalid-feedback">
+                Por favor elige un nombre.
+              </div>
             </div>
 
             <div class="mb-3">
@@ -71,6 +76,7 @@
                   type="radio"
                   name="categoria"
                   id="tazas1"
+                  required
                 />
                 <label class="form-check-label" for="tazas1"> Tazas </label>
               </div>
@@ -80,6 +86,7 @@
                   type="radio"
                   name="categoria"
                   id="remeras1"
+                  required
                 />
                 <label class="form-check-label" for="remeras1"> Remeras </label>
               </div>
@@ -89,6 +96,7 @@
                   type="radio"
                   name="categoria"
                   id="funkos1"
+                  required
                 />
                 <label class="form-check-label" for="funkos1"> Funkos </label>
               </div>
@@ -98,10 +106,13 @@
                   type="radio"
                   name="categoria"
                   id="otros1"
+                  required
                 />
                 <label class="form-check-label" for="otros1"> Otros </label>
+                <div class="invalid-feedback">Por favor elige una categoría</div>
               </div>
             </div>
+            
             <div class="mb-3">
               <label for="descripcion1">
                 <p class="fs-4">Descripción</p>
@@ -110,7 +121,12 @@
                 class="form-control"
                 id="descripcion1"
                 rows="3"
+                required
               ></textarea>
+              <div class="valid-feedback">¡Luce bien!</div>
+              <div class="invalid-feedback">
+                Por favor describe el producto.
+              </div>
             </div>
             <div class="mb-3">
               <label for="etiquetas1">
@@ -121,7 +137,12 @@
                 id="etiquetas1"
                 rows="1"
                 placeholder="Separar por comas"
+                required
               ></textarea>
+              <div class="valid-feedback">¡Luce bien!</div>
+              <div class="invalid-feedback">
+                Por favor escribe al menos una etiqueta.
+              </div>
             </div>
 
             <div class="mb-3">
@@ -134,7 +155,12 @@
                 min="0"
                 placeholder="$1000"
                 id="precio1"
+                required
               />
+              <div class="valid-feedback">¡Luce bien!</div>
+              <div class="invalid-feedback">
+                Por favor elige un precio.
+              </div>
             </div>
 
             <div class="mb-3">
@@ -146,17 +172,22 @@
                 type="url"
                 placeholder="https://i.imgflip.com/7dmaoz.jpg?a467400"
                 id="url1"
+                required
               />
+              <div class="valid-feedback">¡Luce bien!</div>
+              <div class="invalid-feedback">
+                Por favor elige una imagen y pon su URL en este campo.
+              </div>
             </div>
 
             <div class="mb-3 form-check">
               <input type="checkbox" class="form-check-input" id="promocion1" />
-              <label class="form-check-label" for="promocion1"
-                >Promocionar</label
-              >
+              <label class="form-check-label" for="promocion1">
+                Promocionar
+              </label>
             </div>
             <div class="d-grid gap-2 col-4 mx-auto">
-              <button type="button" class="btn btn-success mb-3">
+              <button type="submit" class="btn btn-success mb-3">
                 <b> Agregar </b>
               </button>
             </div>
@@ -244,5 +275,6 @@
       crossorigin="anonymous"
     ></script>
     <script src="js/codigoProducto.js"></script>
+    <script src="js/validarFormAgregarProd.js"></script>
   </body>
 </html>
