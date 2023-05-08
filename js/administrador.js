@@ -1,5 +1,5 @@
 
-/* import {generarCodigoProducto} from './codigoProducto'; */
+import { generarCodigoProducto } from '../js/codigoProducto.js';
 
 let productos = [];
 
@@ -11,12 +11,12 @@ const descripcionProducto = document.getElementById("descripcion1");
 const etiquetasProducto = document.getElementById("etiquetas1");
 const precioProducto = document.getElementById("precio1");
 const urlProducto = document.getElementById("url1");
-const promocionarProducto = document.querySelector("input[name=promocion1]");
+const promocionarProducto = document.getElementById("promocion1");
 const addButton = document.getElementById("addProductButton");
 
 // Función return Categoria
 
-function RetornaCategoria(c){
+function retornaCategoria(c){
   for (const f of c) {
     if (f.checked) {
       return f.value
@@ -28,23 +28,23 @@ function RetornaCategoria(c){
 
 addButton.addEventListener("click", (e) => {
     e.preventDefault();
-    const id = 11;
+
     const name = nombreProducto.value;
     const price = precioProducto.value;
-    const category = RetornaCategoria(categoriaProducto);
+    const category = retornaCategoria(categoriaProducto);
     const tags = etiquetasProducto.value;
     const url = urlProducto.value;
-    const promotion = promocionarProducto.value;
+    const promotion = promocionarProducto.checked;
     const description = descripcionProducto.value;
     const mode = agregarProductoForm.dataset.mode;
     const editId = agregarProductoForm.dataset.editId;
-console.log(id, name, category, description, tags, price, url, promotion)
-    console.log(agregarProductoForm.dataset)
+    
     if (mode === "add") {
+      const id = generarCodigoProducto(productos);
       const producto = { id, name, category, description, tags, price, url, promotion};
       productos.push(producto);
       console.log("agregue el producto");
-      // console.log(productos)
+       console.log(productos)
        localStorage.setItem("productos", JSON.stringify(productos));
     } else if (mode === "editar") {
       const index = productos.findIndex((producto) => producto.id === editId); // Buscamos el indice del producto a editar

@@ -34,7 +34,7 @@
           <p class="fs-2 bg-warning">Agregar / Modificar Producto</p>
 
           <!-- Formulario de Agregar Producto -->
-          <form id="agregarProductosForm" class="needs-validation" novalidate>
+          <form id="agregarProductosForm" data-mode = "add" class="needs-validation" novalidate>
             <fieldset disabled>
               <div class="mb-3">
                 <label for="codigo">
@@ -183,7 +183,7 @@
             </div>
 
             <div class="mb-3 form-check">
-              <input type="checkbox" class="form-check-input" id="promocion1" />
+              <input type="checkbox" class="form-check-input" id="promocion1" name="promocionar" value="true"/>
               <label class="form-check-label" for="promocion1">
                 Promocionar
               </label>
