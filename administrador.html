@@ -31,10 +31,10 @@
         <div class="row bg-light px-5">
           <p class="fs-1 text-center mt-3">ADMINISTRACIÓN</p>
           <hr />
-          <p class="fs-2 bg-warning">Agregar Producto</p>
+          <p class="fs-2 bg-warning">Agregar / Modificar Producto</p>
 
           <!-- Formulario de Agregar Producto -->
-          <form class="needs-validation" novalidate>
+          <form id="agregarProductosForm" class="needs-validation" novalidate>
             <fieldset disabled>
               <div class="mb-3">
                 <label for="codigo">
@@ -61,9 +61,7 @@
                 required
               />
               <div class="valid-feedback">¡Luce bien!</div>
-              <div class="invalid-feedback">
-                Por favor elige un nombre.
-              </div>
+              <div class="invalid-feedback">Por favor elige un nombre.</div>
             </div>
 
             <div class="mb-3">
@@ -76,6 +74,7 @@
                   type="radio"
                   name="categoria"
                   id="tazas1"
+                  value="Tazas"
                   required
                 />
                 <label class="form-check-label" for="tazas1"> Tazas </label>
@@ -86,6 +85,7 @@
                   type="radio"
                   name="categoria"
                   id="remeras1"
+                  value="Remeras"
                   required
                 />
                 <label class="form-check-label" for="remeras1"> Remeras </label>
@@ -96,6 +96,7 @@
                   type="radio"
                   name="categoria"
                   id="funkos1"
+                  value="Funkos"
                   required
                 />
                 <label class="form-check-label" for="funkos1"> Funkos </label>
@@ -106,13 +107,16 @@
                   type="radio"
                   name="categoria"
                   id="otros1"
+                  value="Otros"
                   required
                 />
                 <label class="form-check-label" for="otros1"> Otros </label>
-                <div class="invalid-feedback">Por favor elige una categoría</div>
+                <div class="invalid-feedback">
+                  Por favor elige una categoría
+                </div>
               </div>
             </div>
-            
+
             <div class="mb-3">
               <label for="descripcion1">
                 <p class="fs-4">Descripción</p>
@@ -158,9 +162,7 @@
                 required
               />
               <div class="valid-feedback">¡Luce bien!</div>
-              <div class="invalid-feedback">
-                Por favor elige un precio.
-              </div>
+              <div class="invalid-feedback">Por favor elige un precio.</div>
             </div>
 
             <div class="mb-3">
@@ -187,7 +189,11 @@
               </label>
             </div>
             <div class="d-grid gap-2 col-4 mx-auto">
-              <button type="submit" class="btn btn-success mb-3">
+              <button
+                type="submit"
+                class="btn btn-success mb-3"
+                id="addProductButton"
+              >
                 <b> Agregar </b>
               </button>
             </div>
@@ -274,7 +280,7 @@
       integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
       crossorigin="anonymous"
     ></script>
-    <script src="js/codigoProducto.js"></script>
-    <script src="js/validarFormAgregarProd.js"></script>
+    <script type="module" src="./js/administrador.js"></script>
+    <script src="./js/validarFormAgregarProd.js"></script>
   </body>
 </html>
