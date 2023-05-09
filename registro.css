@@ -1,0 +1,22 @@
+.d-flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+.boton {
+  color:  whitesmoke;
+  border-color: black;
+
+}
+.modal-header {
+  background-color: black;
+  font-size: large;
+}
+
+.modal-body {
+  background-image: url(./imagenes/Fondo.jpg);
+  color: #ffda6a; 
+  font-display: black;
+  
+}
