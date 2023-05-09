@@ -123,18 +123,18 @@ function listarProductos() {
   productos.forEach((producto, index) => {
     const tr = document.createElement("tr");
     tr.innerHTML = `
-    <th scope="row">${producto.id}</th>
-                <td>${producto.name}</td>
-                <td>${producto.category}</td>
-                <td>${producto.description}</td>
-                <td>${producto.tags}</td>
-                <td>$${producto.price}</td>
-                <td>
+    <th scope="row" class="align-middle">${producto.id}</th>
+                <td class="align-middle">${producto.name}</td>
+                <td class="align-middle">${producto.category}</td>
+                <td class="align-middle">${producto.description}</td>
+                <td class="align-middle">${producto.tags}</td>
+                <td class="align-middle">$${producto.price}</td>
+                <td class="align-middle">
                   <button type="button" class="btn btn-outline-secondary">
                     <i class="bi bi-link"></i>
                   </button>
                 </td>
-                <td>
+                <td class="align-middle">
                   <button type="button" class="btn btn-outline-primary">
                     <i class="bi bi-pencil"></i>
                   </button>
