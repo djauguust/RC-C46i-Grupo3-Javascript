@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="./styles.css">
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
@@ -79,7 +80,7 @@
         </div>
       </div>
     </nav>
-    <div class="container">
+    <div class="container mt-4">
       <div class="row">
         <div class="col-lg-6">
           <img src="./img/funko5.jpg" class="img-fluid" alt="..." />
@@ -106,130 +107,161 @@
           ><br /><br />
           <p><i class="bi bi-file-earmark-lock"> Pago 100% Seguro</i></p>
           <p><i class="bi bi-truck"> Envio Gratuito a partir de $10.000</i></p>
-          <a href="">
+          <a href="" style="text-decoration: none;">
             <p class="text-warning fw-semibold">
               <i class="bi bi-heart-fill"></i> Añadir a la lista de productos
               deseados
             </p>
           </a>
         </div>
-        <div class="col-lg-12">
-          <h2>Informacion Adicional</h2>
-          <p>Codigo producto: 55555</p>
-          <p>Categoria: Funkos</p>
+        <div class="col-lg-12 mt-5">
+          <p>
+            <a class="btn btn-warning w-100" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+              Informacion Adicional <i class="bi bi-chevron-down"></i>
+            </a>
+          </p>
+          <div class="collapse text-center" id="collapseExample">
+              <p>Codigo Producto: 5352332</p>
+              <p>Categoria: Funkos</p>
+              <p>Producto 100% oficial licenciado</p>
+              <img src="./img/envios-a-todo-el-pais.jpg" alt="" height="100px">
         </div>
       </div>
     </div>
-    <h2>Productos relacionados:</h2>
-    <div class="carusel" >
-      <div id="" class="carousel carousel-dark slide">
-        <div class="carousel-inner">
-          <div class="carousel-item d-flex active justify-content-center">
-            <div class="row">
-            <div class="col" >
-              <div class="card" style="width: 18rem;">
-                <img src="" class="card-img-top" alt="...">
+    <h3 style="margin-left: 10%;">Productos recomendados</h3>
+    <div id="carouselExample" class="carousel mb-5 carousel-dark slide">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <div class="row">
+            <div class="col-lg-4 col-md-4">
+              <div class="card text-center" style="width: 18rem">
+                <img src="./img/remera-bluelock.jpg" class="card-img-top" alt="..." />
                 <div class="card-body">
-                  <p class="card-text">FUNKO ANIME </p>
-                  <p class="text-warning">$10.000</p>
+                  <p class="card-text">
+                    Remera Chigiri Hyoma Blue Lock
+                  </p>
+                  <h3 class="text-warning fw-semibold">$8.000</h3>
                 </div>
               </div>
             </div>
-            <div class="col" >
-              <div class="card" style="width: 18rem;">
-                <img src="./img/funko2.jpeg" class="card-img-top" alt="...">
+            <div class="col-lg-4 col-md-4">
+              <div class="card text-center" style="width: 18rem">
+                <img src="./img/taza-maestro-roshi.jpg" class="card-img-top" alt="..." />
                 <div class="card-body">
-                  <p class="card-text">FUNKO ANIME </p>
-                  <p class="text-warning">$10.000</p>
+                  <p class="card-text">
+                    Taza Maestro Roshi
+                  </p>
+                  <h3 class="text-warning fw-semibold">$5.000</h3>
                 </div>
               </div>
             </div>
-            <div class="col" >
-              <div class="card" style="width: 18rem;">
-                <img src="./img/funko3.jpeg" class="card-img-top" alt="...">
+            <div class="col-lg-4 col-md-4">
+              <div class="card text-center" style="width: 18rem">
+                <img src="./img/funko3.jpeg" class="card-img-top" alt="..." />
                 <div class="card-body">
-                  <p class="card-text">FUNKO ANIME </p>
-                <p class="text-warning">$10.000</p>
-
-                </div>
-              </div>
-            </div>
-          </div>
-          </div>
-          <div class="carousel-item d-flex justify-content-center">
-            <div class="row">
-            <div class="col" >
-              <div class="card" style="width: 18rem;">
-                <img src="./img/funko1.jpeg" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <p class="card-text">FUNKO ANIME </p>
-                  <p class="text-warning">$10.000</p>
-                </div>
-              </div>
-            </div>
-            <div class="col" >
-              <div class="card" style="width: 18rem;">
-                <img src="./img/funko2.jpeg" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <p class="card-text">FUNKO ANIME </p>
-                  <p class="text-warning">$10.000</p>
-                </div>
-              </div>
-            </div>
-            <div class="col" >
-              <div class="card" style="width: 18rem;">
-                <img src="./img/funko3.jpeg" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <p class="card-text">FUNKO ANIME </p>
-                <p class="text-warning">$10.000</p>
-
-                </div>
-              </div>
-            </div>
-          </div>
-          </div>
-          <div class="carousel-item d-flex active justify-content-center">
-            <div class="row">
-            <div class="col" >
-              <div class="card" style="width: 18rem;">
-                <img src="./img/funko1.jpeg" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <p class="card-text">FUNKO ANIME </p>
-                  <p class="text-warning">$10.000</p>
-                </div>
-              </div>
-            </div>
-            <div class="col" >
-              <div class="card" style="width: 18rem;">
-                <img src="./img/funko2.jpeg" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <p class="card-text">FUNKO ANIME </p>
-                  <p class="text-warning">$10.000</p>
-                </div>
-              </div>
-            </div>
-            <div class="col" >
-              <div class="card" style="width: 18rem;">
-                <img src="./img/funko3.jpeg" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <p class="card-text">FUNKO ANIME </p>
-                <p class="text-warning">$10.000</p>
-
+                  <p class="card-text">
+                    Funko Pop Kakashi
+                  </p>
+                  <h3 class="text-warning">$10.000</h3>
                 </div>
               </div>
             </div>
           </div>
         </div>
+        <div class="carousel-item">
+          <div class="row">
+            <div class="col-lg-4 col-md-4">
+              <div class="card text-center" style="width: 18rem">
+                <img src="./img/remera-goku.jpg" class="card-img-top" alt="..." />
+                <div class="card-body">
+                  <p class="card-text">
+                    Remera Goku
+                  </p>
+                  <h3 class="text-warning fw-semibold">$9.000</h3>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-4">
+              <div class="card text-center" style="width: 18rem">
+                <img src="./img/remera-yato.jpg" class="card-img-top" alt="..." />
+                <div class="card-body">
+                  <p class="card-text">
+                   Remera Yato
+                  </p>
+                  <h3 class="text-warning fw-semibold">$9.500</h3>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-4">
+              <div class="card text-center" style="width: 18rem">
+                <img src="./img/taza-banana-fish.jpg" class="card-img-top" alt="..." />
+                <div class="card-body">
+                  <p class="card-text">
+                    Taza Banana Fish
+                  </p>
+                  <h3 class="text-warning fw-semibold">$4.200</h3>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
+        <div class="carousel-item">
+          <div class="row">
+            <div class="col-lg-4 col-md-4">
+              <div class="card text-center" style="width: 18rem">
+                <img src="./img/camiseta-roja-piccolo-600x600.jpg" class="card-img-top" alt="..." />
+                <div class="card-body">
+                  <p class="card-text">
+                    Remera Piccolo
+                  </p>
+                  <h3 class="text-warning fw-semibold">$8.900</h3>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-4">
+              <div class="card text-center" style="width: 18rem">
+                <img src="./img/funko2.jpeg" class="card-img-top" alt="..." />
+                <div class="card-body">
+                  <p class="card-text">
+                    Funko Tanjiro
+                  </p>
+                  <h3 class="text-warning fw-semibold">$4.200</h3>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-4">
+              <div class="card text-center" style="width: 18rem">
+                <img src="./img/taza-bersek.jpg" class="card-img-top" alt="..." />
+                <div class="card-body">
+                  <p class="card-text">
+                    Taza Bersek
+                  </p>
+                  <h3 class="text-warning fw-semibold">$4.200</h3>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+      <button
+        class="carousel-control-prev"
+        type="button"
+        data-bs-target="#carouselExample"
+        data-bs-slide="prev"
+        style="left: -10%"
+      >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button
+        class="carousel-control-next"
+        type="button"
+        data-bs-target="#carouselExample"
+        data-bs-slide="next"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
     </div>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
