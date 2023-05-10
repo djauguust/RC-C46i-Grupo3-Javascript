@@ -17,69 +17,7 @@
       crossorigin="anonymous"
     />
   </head>
-
-  <body>
-    <nav class="navbar navbar-expand-lg bg-warning">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">Navbar</a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                Dropdown
-              </a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li>
-                  <hr class="dropdown-divider" />
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                </li>
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled">Disabled</a>
-            </li>
-          </ul>
-          <form class="d-flex" role="search">
-            <input
-              class="form-control me-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button class="btn btn-outline-success" type="submit">
-              Search
-            </button>
-          </form>
-        </div>
-      </div>
-    </nav>
+ <body>
     <div class="container mt-4">
       <div class="row">
         <div class="col-lg-6">
@@ -124,28 +62,28 @@
               <p>Codigo Producto: 5352332</p>
               <p>Categoria: Funkos</p>
               <p>Producto 100% oficial licenciado</p>
-              <img src="./img/envios-a-todo-el-pais.jpg" alt="" height="100px">
+              <img class="imagen-personalizada" src="./img/envios-a-todo-el-pais.jpg" alt="" height="100vh" width="300vw">
         </div>
       </div>
     </div>
     <h3 style="margin-left: 10%;">Productos recomendados</h3>
-    <div id="carouselExample" class="carousel mb-5 carousel-dark slide">
+    <div id="carouselExample" class="carousel mb-5 carousel-dark slide d-none d-lg-block">
       <div class="carousel-inner">
         <div class="carousel-item active">
           <div class="row">
             <div class="col-lg-4 col-md-4">
-              <div class="card text-center" style="width: 18rem">
+              <div class="card text-center" style="width: 100%">
                 <img src="./img/remera-bluelock.jpg" class="card-img-top" alt="..." />
                 <div class="card-body">
                   <p class="card-text">
-                    Remera Chigiri Hyoma Blue Lock
+                    Remera Chigiri Hyoma
                   </p>
                   <h3 class="text-warning fw-semibold">$8.000</h3>
                 </div>
               </div>
             </div>
             <div class="col-lg-4 col-md-4">
-              <div class="card text-center" style="width: 18rem">
+              <div class="card text-center" style="width: 100%">
                 <img src="./img/taza-maestro-roshi.jpg" class="card-img-top" alt="..." />
                 <div class="card-body">
                   <p class="card-text">
@@ -156,7 +94,7 @@
               </div>
             </div>
             <div class="col-lg-4 col-md-4">
-              <div class="card text-center" style="width: 18rem">
+              <div class="card text-center" style="width: 100%">
                 <img src="./img/funko3.jpeg" class="card-img-top" alt="..." />
                 <div class="card-body">
                   <p class="card-text">
@@ -171,7 +109,7 @@
         <div class="carousel-item">
           <div class="row">
             <div class="col-lg-4 col-md-4">
-              <div class="card text-center" style="width: 18rem">
+              <div class="card text-center" style="width: 100%">
                 <img src="./img/remera-goku.jpg" class="card-img-top" alt="..." />
                 <div class="card-body">
                   <p class="card-text">
@@ -182,7 +120,7 @@
               </div>
             </div>
             <div class="col-lg-4 col-md-4">
-              <div class="card text-center" style="width: 18rem">
+              <div class="card text-center" style="width: 100%">
                 <img src="./img/remera-yato.jpg" class="card-img-top" alt="..." />
                 <div class="card-body">
                   <p class="card-text">
@@ -193,7 +131,7 @@
               </div>
             </div>
             <div class="col-lg-4 col-md-4">
-              <div class="card text-center" style="width: 18rem">
+              <div class="card text-center" style="width: 100%">
                 <img src="./img/taza-banana-fish.jpg" class="card-img-top" alt="..." />
                 <div class="card-body">
                   <p class="card-text">
@@ -208,7 +146,7 @@
         <div class="carousel-item">
           <div class="row">
             <div class="col-lg-4 col-md-4">
-              <div class="card text-center" style="width: 18rem">
+              <div class="card text-center" style="width: 100%">
                 <img src="./img/camiseta-roja-piccolo-600x600.jpg" class="card-img-top" alt="..." />
                 <div class="card-body">
                   <p class="card-text">
@@ -219,7 +157,7 @@
               </div>
             </div>
             <div class="col-lg-4 col-md-4">
-              <div class="card text-center" style="width: 18rem">
+              <div class="card text-center" style="width: 100%">
                 <img src="./img/funko2.jpeg" class="card-img-top" alt="..." />
                 <div class="card-body">
                   <p class="card-text">
@@ -230,7 +168,7 @@
               </div>
             </div>
             <div class="col-lg-4 col-md-4">
-              <div class="card text-center" style="width: 18rem">
+              <div class="card text-center" style="width: 100%">
                 <img src="./img/taza-bersek.jpg" class="card-img-top" alt="..." />
                 <div class="card-body">
                   <p class="card-text">
@@ -259,6 +197,52 @@
         data-bs-target="#carouselExample"
         data-bs-slide="next"
       >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+    <!-- CAROUSEL VERISON MOBILE -->
+    <div id="carouselExample1" class="carousel carousel-dark slide d-xs-block d-sm-block d-lg-none">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <div class="card text-center m-auto" style="width: 18rem">
+            <img src="./img/remera-bluelock.jpg" class="card-img-top" alt="..." />
+            <div class="card-body">
+              <p class="card-text">
+                Remera Chigiri Hyoma
+              </p>
+              <h3 class="text-warning fw-semibold">$8.000</h3>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="card text-center m-auto" style="width: 18rem">
+            <img src="./img/funko4.jpg" class="card-img-top" alt="..." />
+            <div class="card-body">
+              <p class="card-text">
+                Funko Kanao Tsuyuri
+              </p>
+              <h3 class="text-warning fw-semibold">$4.200</h3>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="card text-center m-auto" style="width: 18rem">
+            <img src="./img/remera-goku.jpg" class="card-img-top personalizada" alt="..." />
+            <div class="card-body">
+              <p class="card-text">
+                Remera Goku
+              </p>
+              <h3 class="text-warning fw-semibold">$8.900</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample1" data-bs-slide="prev" style="left: -15%;">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExample1" data-bs-slide="next" style="left: 100%;">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Next</span>
       </button>
