@@ -23,6 +23,7 @@ const listaUsuarios = document.getElementById("listaUsuarios");
 
 const obtenerProductos = localStorage.getItem("productos");
 const obtenerUsuarios = localStorage.getItem("usuarios");
+//--
 
 // Leo el LocalStorage, listo los productos y los usuarios
 if (obtenerProductos) {
@@ -111,7 +112,7 @@ addButton.addEventListener("click", (e) => {
   const description = descripcionProducto.value;
   const promotion = promocionarProducto.checked;
   const mode = agregarProductoForm.dataset.mode;
-  const editId = agregarProductoForm.dataset.editId;
+  const editId = parseInt(agregarProductoForm.dataset.editId);
 
   // Valido los datos que ingreso, si es falso, salgo sin hacer nada.
   if (!validarFormularioJS(name, price, category, tags, url, description)) {
@@ -133,14 +134,29 @@ addButton.addEventListener("click", (e) => {
     productos.push(producto);
     localStorage.setItem("productos", JSON.stringify(productos));
   } else if (mode === "editar") {
+    console.log(`1`);
+    // Validamos que los cambios sean permitidos:
+    if (!validarFormularioJS(name, price, category, tags, url, description)) {
+      return;
+    }
+    console.log(`2`);
+
     // Buscamos el indice del producto a editar
-    const index = productos.findIndex((producto) => producto.id === editId);
+    const index = parseInt(productos.findIndex((producto) => producto.id === editId));
+    console.log(`3`);
+    console.log(index);
+    console.log(editId);
     if (index !== -1) {
       // Si el producto existe
       const product = productos[index]; // Obtenemos el producto a editar del array
       product.name = name;
       product.price = price;
       product.description = description;
+      product.url = url;
+      product.tags = tags;
+      product.promotion = promotion;
+      product.category = category;
+      console.log(`4`);
     }
   }
 
@@ -157,17 +173,19 @@ addButton.addEventListener("click", (e) => {
 listaProductos.addEventListener("click", (e) => {
   if (e.target.classList.contains("eliminarproducto")) {
     const id = parseInt(e.target.dataset.id); // Obtenemos el id del producto a eliminar
-    const toastTrigger = document.getElementById(id)
-    const toastLiveExample = document.getElementById('liveToast'+id)
+    const toastTrigger = document.getElementById(id);
+    const toastLiveExample = document.getElementById("liveToast" + id);
 
     if (toastTrigger) {
-      const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
-      toastTrigger.addEventListener('click', () => {
-        toastBootstrap.show()
-      })
-    } 
+      const toastBootstrap =
+        bootstrap.Toast.getOrCreateInstance(toastLiveExample);
+      toastTrigger.addEventListener("click", () => {
+        toastBootstrap.show();
+      });
+    }
   }
 
+  // Segmento que confirma el borrado de producto
   if (e.target.classList.contains("eliminarproductoConfirmado")) {
     const id = parseInt(e.target.dataset.id); // Obtenemos el id del producto a eliminar
     const index = productos.findIndex((producto) => producto.id === id);
@@ -181,6 +199,30 @@ listaProductos.addEventListener("click", (e) => {
 });
 //--
 
+// Función Editar Producto
+listaProductos.addEventListener("click", (e) => {
+  if (e.target.classList.contains("editar")) {
+    // Si el elemento clickeado tiene la clase editar
+    const id = parseInt(e.target.dataset.id); // Obtenemos el id del producto a editar
+    const producto = productos.find((producto) => producto.id === id); // Buscamos el producto a editar
+
+    if (producto) {
+      document.getElementById("nombre1").value = producto.name; // Seteamos el valor del input nombre
+      document.getElementById("precio1").value = producto.price; // Seteamos el valor del input precio
+      document.getElementById("descripcion1").value = producto.description; // Seteamos el valor del input descripcion
+      document.getElementById("etiquetas1").value = producto.tags;
+      document.getElementById("url1").value = producto.url;
+      document.getElementById(producto.category).checked = true;
+      document.getElementById("promocion1").checked = producto.promotion;
+
+      agregarProductoForm.dataset.mode = "editar"; // Cambiamos el modo del formulario
+      agregarProductoForm.dataset.editId = id; // Seteamos el id del producto a editar
+      addButton.textContent = "Editar"; // Cambiamos el texto del boton
+    }
+  }
+});
+//--
+
 // Función Editar Usuario
 //--
 
@@ -189,21 +231,25 @@ listaUsuarios.addEventListener("click", (e) => {
   if (e.target.classList.contains("eliminarusuario")) {
     const usuario = e.target.dataset.usuario; // Obtenemos el usuario a eliminar
     const toastTrigger = document.getElementById(usuario);
-    const toastLiveExample = document.getElementById('liveToast'+usuario);
+    const toastLiveExample = document.getElementById("liveToast" + usuario);
 
     if (toastTrigger) {
-      const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
-      toastTrigger.addEventListener('click', () => {
-        toastBootstrap.show()
-      })
-    } 
+      const toastBootstrap =
+        bootstrap.Toast.getOrCreateInstance(toastLiveExample);
+      toastTrigger.addEventListener("click", () => {
+        toastBootstrap.show();
+      });
+    }
   }
 
+  // Segmento que confirma el borrado del Usuario
   if (e.target.classList.contains("eliminarusuarioConfirmado")) {
-    console.log(`1`)
+    console.log(`1`);
     const usuario = e.target.dataset.usuario; // Obtenemos el usuario a eliminar
-    const index = usuarios.findIndex((producto) => producto.usuario === usuario);
-    console.log(usuario,index)
+    const index = usuarios.findIndex(
+      (producto) => producto.usuario === usuario
+    );
+    console.log(usuario, index);
     if (index !== -1) {
       usuarios.splice(index, 1);
       //agregar la funcion para actualizar la lista de productos.
@@ -291,18 +337,24 @@ function listarProductos() {
                   </a>
                 </td>
                 <td class="align-middle">
-                  <button type="button" class="btn btn-outline-primary" data-id="${producto.id}">
-                    <i class="bi bi-pencil" data-id="${producto.id}"></i>
+                  <button type="button" class="btn btn-outline-primary editar" data-id="${
+                    producto.id
+                  }">
+                    <i class="bi bi-pencil editar" data-id="${producto.id}"></i>
                   </button>
                   <button 
                     id="${producto.id}"
                     type="button" 
                     class="btn btn-outline-danger mt-1 eliminarproducto" 
                     data-id="${producto.id}">
-                    <i class="bi bi-trash3 eliminarproducto" data-id="${producto.id}"></i>                    
+                    <i class="bi bi-trash3 eliminarproducto" data-id="${
+                      producto.id
+                    }"></i>                    
                   </button>
                   <div class="toast-container position-fixed bottom-0 end-0 p-3">
-                  <div id="liveToast${producto.id}" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                  <div id="liveToast${
+                    producto.id
+                  }" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
                     <div class="toast-header">
                       <strong class="me-auto">Alerta de borrado</strong>
                       <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
@@ -315,17 +367,16 @@ function listarProductos() {
                       type="button" 
                       class="btn btn-danger mt-3 eliminarproductoConfirmado" 
                       data-id="${producto.id}">
-                        <i class="bi bi-trash3 eliminarproductoConfirmado" data-id="${producto.id}"></i> Eliminar                    
+                        <i class="bi bi-trash3 eliminarproductoConfirmado" data-id="${
+                          producto.id
+                        }"></i> Eliminar                    
                       </button>
                     </div>
                   </div>
                 </div>`;
     listaProductos.querySelector("tbody").appendChild(tr);
   });
-
   // funcion que guarda los productos en el local storage
   localStorage.setItem("productos", JSON.stringify(productos));
 }
 //--
-
-// Función Listar Usuarios
