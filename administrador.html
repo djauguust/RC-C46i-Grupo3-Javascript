@@ -34,7 +34,12 @@
           <p class="fs-2 bg-warning">Agregar / Modificar Producto</p>
 
           <!-- Formulario de Agregar Producto -->
-          <form id="agregarProductosForm" data-mode = "add" class="needs-validation" novalidate>
+          <form
+            id="agregarProductosForm"
+            data-mode="add"
+            class="needs-validation"
+            novalidate
+          >
             <fieldset disabled>
               <div class="mb-3">
                 <label for="codigo">
@@ -183,7 +188,13 @@
             </div>
 
             <div class="mb-3 form-check">
-              <input type="checkbox" class="form-check-input" id="promocion1" name="promocionar" value="true"/>
+              <input
+                type="checkbox"
+                class="form-check-input"
+                id="promocion1"
+                name="promocionar"
+                value="true"
+              />
               <label class="form-check-label" for="promocion1">
                 Promocionar
               </label>
@@ -202,7 +213,7 @@
           <hr />
           <!-- Administrar productos -->
           <p class="fs-2 bg-warning">Administrar Productos</p>
-          <h4>Total de Productos : <span id="cantidadProductos"></span> </h4>
+          <h4>Total de Productos : <span id="cantidadProductos"></span></h4>
           <table class="table" id="listaProductos">
             <thead>
               <tr>
@@ -217,30 +228,10 @@
               </tr>
             </thead>
             <tbody>
-              <tr class="align-middle">
-                <th scope="row">1</th>
-                <td>Remera Majin Boo vs Gohan</td>
-                <td>Remera</td>
-                <td>Remera XXL para varon</td>
-                <td>remera,blanca,unisex,xxl</td>
-                <td>$8.500</td>
-                <td>
-                  <button type="button" class="btn btn-outline-secondary">
-                    <i class="bi bi-link"></i>
-                  </button>
-                </td>
-                <td>
-                  <button type="button" class="btn btn-outline-primary">
-                    <i class="bi bi-pencil"></i>
-                  </button>
-                  <button type="button" class="btn btn-outline-danger">
-                    <i class="bi bi-trash3"></i>
-                  </button>
-                </td>
-              </tr>
+              <!-- <tr class="align-middle"></tr> -->
             </tbody>
           </table>
-
+          <h6>* : Este producto está promocionándose</h6>
           <!-- /Administrar productos -->
           <hr />
           <!-- Administrar usuarios -->
@@ -282,6 +273,6 @@
       crossorigin="anonymous"
     ></script>
     <script type="module" src="./js/administrador.js"></script>
-    <script src="./js/validarFormAgregarProd.js"></script>
+
   </body>
 </html>

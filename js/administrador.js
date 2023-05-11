@@ -1,6 +1,7 @@
 import { generarCodigoProducto } from "../js/codigoProducto.js";
 
 let productos = [];
+let usuarios = []
 
 // Obtener elementos del DOM
 const listaProductos = document.getElementById("listaProductos");
@@ -15,10 +16,16 @@ const promocionarProducto = document.getElementById("promocion1");
 const addButton = document.getElementById("addProductButton");
 
 const obtenerProductos = localStorage.getItem("productos");
+const obtenerUsuarios = localStorage.getItem("usuarios");
 
+// Leo el LocalStorage, listo los productos y los usuarios
 if (obtenerProductos) {
-  productos = JSON.parse(obtenerProductos);
+  productos = JSON.parse(obtenerProductos) || [];
   listarProductos();
+}
+if(obtenerUsuarios) {
+  usuarios = JSON.parse(obtenerUsuarios) || [];
+  /* listarUsuarios(); */
 }
 
 // Función return Categoria
@@ -40,7 +47,7 @@ function validarFormularioJS(name, price, category, tags, url, description) {
     category != undefined &&
     tags != null &&
     tags != "" &&
-    /* validarURL(url) && */
+    validarURL(url) &&
     description != null &&
     description != ""
   );
@@ -56,8 +63,34 @@ function validarURL(miurl) {
   }
 }
 
+// Función validación Bootstrap
+function validacionBootstrap() {
+  "use strict";
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  const forms = document.querySelectorAll(".needs-validation");
+
+  // Loop over them and prevent submission
+  Array.from(forms).forEach((form) => {
+    form.addEventListener(
+      "submit",
+      (event) => {
+        if (!form.checkValidity()) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+
+        form.classList.add("was-validated");
+      },
+      false
+    );
+  });
+}
+
 // Función Agregar/modificar Producto
 addButton.addEventListener("click", (e) => {
+  validacionBootstrap();
+
   const name = nombreProducto.value;
   const price = precioProducto.value;
   const category = retornaCategoria(categoriaProducto);
@@ -68,9 +101,10 @@ addButton.addEventListener("click", (e) => {
   const mode = agregarProductoForm.dataset.mode;
   const editId = agregarProductoForm.dataset.editId;
 
-  /* if (!validarFormularioJS(name, price, category, tags, url, description)) {
+  // Valido los datos que ingreso, si es falso, salgo sin hacer nada.
+  if (!validarFormularioJS(name, price, category, tags, url, description)) {
     return;
-  } */
+  }
 
   if (mode === "add") {
     const id = generarCodigoProducto(productos);
@@ -87,7 +121,8 @@ addButton.addEventListener("click", (e) => {
     productos.push(producto);
     localStorage.setItem("productos", JSON.stringify(productos));
   } else if (mode === "editar") {
-    const index = productos.findIndex((producto) => producto.id === editId); // Buscamos el indice del producto a editar
+    // Buscamos el indice del producto a editar
+    const index = productos.findIndex((producto) => producto.id === editId);
     if (index !== -1) {
       // Si el producto existe
       const product = productos[index]; // Obtenemos el producto a editar del array
@@ -98,7 +133,7 @@ addButton.addEventListener("click", (e) => {
   }
 
   console.log("pase por aqui");
-  /* agregarProductoForm.reset(); // Reseteamos el formulario */
+
   agregarProductoForm.dataset.mode = "add"; // Cambiamos el modo del boton
   addButton.textContent = "Agregar"; // Cambiamos el texto del boton
 
@@ -107,6 +142,17 @@ addButton.addEventListener("click", (e) => {
 });
 
 // Función eliminar Producto
+/* listaProductos.addEventListener("click", (e) => {
+  if (e.target.classList.contains("eliminarproducto")) {
+    const id = parseInt(e.target.dataset.id); // Obtenemos el id del producto a eliminar
+    const index = productos.findIndex((producto) => producto.id === id);
+    if (index !== -1) {
+      productos.splice(index, 1);
+      //agregar la funcion para actualizar la lista de productos.
+      listarProductos();
+    }
+  }
+}); */
 
 // Función Editar Usuario
 
@@ -119,29 +165,41 @@ function listarProductos() {
   cantidadProductos.innerHTML = `${productos.length}`;
 
   listaProductos.querySelector("tbody").innerHTML = ""; // Limpiamos el tbody
-  console.log(productos, "productos");
-  productos.forEach((producto, index) => {
+
+  productos.forEach((producto) => {
     const tr = document.createElement("tr");
     tr.innerHTML = `
     <th scope="row" class="align-middle">${producto.id}</th>
-                <td class="align-middle">${producto.name}</td>
+                <td class="align-middle ${
+                  producto.promotion ? `text-bg-warning` : ``
+                }">${producto.name}${producto.promotion ? ` *` : ``}</td>
                 <td class="align-middle">${producto.category}</td>
                 <td class="align-middle">${producto.description}</td>
                 <td class="align-middle">${producto.tags}</td>
                 <td class="align-middle">$${producto.price}</td>
                 <td class="align-middle">
-                  <button type="button" class="btn btn-outline-secondary">
-                    <i class="bi bi-link"></i>
-                  </button>
+                  <a href="${producto.url}" target="_blank">
+                    <button type="button" class="btn btn-outline-secondary">
+                      <i class="bi bi-link"></i>
+                    </button>
+                  </a>
                 </td>
                 <td class="align-middle">
-                  <button type="button" class="btn btn-outline-primary">
-                    <i class="bi bi-pencil"></i>
+                  <button type="button" class="btn btn-outline-primary" data-id="${producto.id}">
+                    <i class="bi bi-pencil" data-id="${producto.id}"></i>
                   </button>
-                  <button type="button" class="btn btn-outline-danger">
-                    <i class="bi bi-trash3"></i>
+                  <button 
+                    type="button" 
+                    class="btn btn-outline-danger mt-1 eliminarproducto" 
+                    data-id="${producto.id}" 
+                    data-bs-container="body" 
+                    data-bs-toggle="popover" 
+                    data-bs-placement="left" 
+                    data-bs-content="Left popover"
+                    ><i class="bi bi-trash3 eliminarproducto" data-id="${producto.id}"></i>                    
                   </button>
-    `;
+                  
+    `;/* <i class="bi bi-trash3 eliminarproducto" data-id="${producto.id}"></i> */
     listaProductos.querySelector("tbody").appendChild(tr);
   });
 
