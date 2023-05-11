@@ -5,7 +5,7 @@
   height: 100%;
 }
 .boton {
-  color:  whitesmoke;
+  
   border-color: black;
 
 }
@@ -15,7 +15,7 @@
 }
 
 .modal-body {
-  background-image: url(./imagenes/Fondo.jpg);
+  background-color: black;
   color: #ffda6a; 
   font-display: black;
   
