@@ -31,10 +31,15 @@
         <div class="row bg-light px-5">
           <p class="fs-1 text-center mt-3">ADMINISTRACIÓN</p>
           <hr />
-          <p class="fs-2 bg-warning">Agregar Producto</p>
+          <p class="fs-2 bg-warning">Agregar / Modificar Producto</p>
 
           <!-- Formulario de Agregar Producto -->
-          <form class="needs-validation" id="formulario1" novalidate>
+          <form
+            id="agregarProductosForm"
+            data-mode="add"
+            class="needs-validation"
+            novalidate
+          >
             <fieldset disabled>
               <div class="mb-3">
                 <label for="codigo">
@@ -61,9 +66,7 @@
                 required
               />
               <div class="valid-feedback">¡Luce bien!</div>
-              <div class="invalid-feedback">
-                Por favor elige un nombre.
-              </div>
+              <div class="invalid-feedback">Por favor elige un nombre.</div>
             </div>
 
             <div class="mb-3">
@@ -75,44 +78,50 @@
                   class="form-check-input"
                   type="radio"
                   name="categoria"
-                  id="tazas"
+                  id="tazas1"
+                  value="Tazas"
                   required
                 />
-                <label class="form-check-label" for="tazas"> Tazas </label>
+                <label class="form-check-label" for="tazas1"> Tazas </label>
               </div>
               <div class="form-check">
                 <input
                   class="form-check-input"
                   type="radio"
                   name="categoria"
-                  id="remeras"
+                  id="remeras1"
+                  value="Remeras"
                   required
                 />
-                <label class="form-check-label" for="remeras"> Remeras </label>
+                <label class="form-check-label" for="remeras1"> Remeras </label>
               </div>
               <div class="form-check">
                 <input
                   class="form-check-input"
                   type="radio"
                   name="categoria"
-                  id="funkos"
+                  id="funkos1"
+                  value="Funkos"
                   required
                 />
-                <label class="form-check-label" for="funkos"> Funkos </label>
+                <label class="form-check-label" for="funkos1"> Funkos </label>
               </div>
               <div class="form-check">
                 <input
                   class="form-check-input"
                   type="radio"
                   name="categoria"
-                  id="otros"
+                  id="otros1"
+                  value="Otros"
                   required
                 />
-                <label class="form-check-label" for="otros"> Otros </label>
-                <div class="invalid-feedback">Por favor elige una categoría</div>
+                <label class="form-check-label" for="otros1"> Otros </label>
+                <div class="invalid-feedback">
+                  Por favor elige una categoría
+                </div>
               </div>
             </div>
-            
+
             <div class="mb-3">
               <label for="descripcion1">
                 <p class="fs-4">Descripción</p>
@@ -158,9 +167,7 @@
                 required
               />
               <div class="valid-feedback">¡Luce bien!</div>
-              <div class="invalid-feedback">
-                Por favor elige un precio.
-              </div>
+              <div class="invalid-feedback">Por favor elige un precio.</div>
             </div>
 
             <div class="mb-3">
@@ -181,13 +188,23 @@
             </div>
 
             <div class="mb-3 form-check">
-              <input type="checkbox" class="form-check-input" id="promocion1" />
+              <input
+                type="checkbox"
+                class="form-check-input"
+                id="promocion1"
+                name="promocionar"
+                value="true"
+              />
               <label class="form-check-label" for="promocion1">
                 Promocionar
               </label>
             </div>
             <div class="d-grid gap-2 col-4 mx-auto">
-              <button type="submit" class="btn btn-success mb-3" id="agregar1">
+              <button
+                type="submit"
+                class="btn btn-success mb-3"
+                id="addProductButton"
+              >
                 <b> Agregar </b>
               </button>
             </div>
@@ -196,7 +213,8 @@
           <hr />
           <!-- Administrar productos -->
           <p class="fs-2 bg-warning">Administrar Productos</p>
-          <table class="table">
+          <h4>Total de Productos : <span id="cantidadProductos"></span></h4>
+          <table class="table" id="listaProductos">
             <thead>
               <tr>
                 <th scope="col-1">#</th>
@@ -210,30 +228,10 @@
               </tr>
             </thead>
             <tbody>
-              <tr class="align-middle">
-                <th scope="row">1</th>
-                <td>Remera Majin Boo vs Gohan</td>
-                <td>Remera</td>
-                <td>Remera XXL para varon</td>
-                <td>remera,blanca,unisex,xxl</td>
-                <td>$8.500</td>
-                <td>
-                  <button type="button" class="btn btn-outline-secondary">
-                    <i class="bi bi-link"></i>
-                  </button>
-                </td>
-                <td>
-                  <button type="button" class="btn btn-outline-primary">
-                    <i class="bi bi-pencil"></i>
-                  </button>
-                  <button type="button" class="btn btn-outline-danger">
-                    <i class="bi bi-trash3"></i>
-                  </button>
-                </td>
-              </tr>
+              <!-- <tr class="align-middle"></tr> -->
             </tbody>
           </table>
-
+          <h6>* : Este producto está promocionándose</h6>
           <!-- /Administrar productos -->
           <hr />
           <!-- Administrar usuarios -->
@@ -274,6 +272,7 @@
       integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
       crossorigin="anonymous"
     ></script>
-    <script src="crearProducto.js"></script>
+    <script type="module" src="./js/administrador.js"></script>
+
   </body>
 </html>
