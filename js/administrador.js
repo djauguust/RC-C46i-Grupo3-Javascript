@@ -1,7 +1,10 @@
 import { generarCodigoProducto } from "../js/codigoProducto.js";
 
 let productos = [];
-let usuarios = []
+let usuarios = [
+  { usuario: "admin", email: "admin", contrasenia: "admin" },
+  { usuario: "augusto", email: "augusto@gmail.com", contrasenia: "1234" },
+];
 
 // Obtener elementos del DOM
 const listaProductos = document.getElementById("listaProductos");
@@ -15,6 +18,9 @@ const urlProducto = document.getElementById("url1");
 const promocionarProducto = document.getElementById("promocion1");
 const addButton = document.getElementById("addProductButton");
 
+const listaUsuarios = document.getElementById("listaUsuarios");
+// hay que hacer un segundo formulario para editar usuarios!!!
+
 const obtenerProductos = localStorage.getItem("productos");
 const obtenerUsuarios = localStorage.getItem("usuarios");
 
@@ -23,9 +29,9 @@ if (obtenerProductos) {
   productos = JSON.parse(obtenerProductos) || [];
   listarProductos();
 }
-if(obtenerUsuarios) {
+if (obtenerUsuarios) {
   usuarios = JSON.parse(obtenerUsuarios) || [];
-  /* listarUsuarios(); */
+  listarUsuarios();
 }
 
 // Función return Categoria
@@ -43,6 +49,7 @@ function validarFormularioJS(name, price, category, tags, url, description) {
     name != null &&
     name != "" &&
     price > 0 &&
+    price != null &&
     price != "" &&
     category != undefined &&
     tags != null &&
@@ -137,12 +144,11 @@ addButton.addEventListener("click", (e) => {
   agregarProductoForm.dataset.mode = "add"; // Cambiamos el modo del boton
   addButton.textContent = "Agregar"; // Cambiamos el texto del boton
 
-  //agregar la funcion para actualizar la lista de productos.
   listarProductos();
 });
 
 // Función eliminar Producto
-/* listaProductos.addEventListener("click", (e) => {
+listaProductos.addEventListener("click", (e) => {
   if (e.target.classList.contains("eliminarproducto")) {
     const id = parseInt(e.target.dataset.id); // Obtenemos el id del producto a eliminar
     const index = productos.findIndex((producto) => producto.id === id);
@@ -152,14 +158,40 @@ addButton.addEventListener("click", (e) => {
       listarProductos();
     }
   }
-}); */
+});
 
 // Función Editar Usuario
 
 // Función Eliminar Usuario
 
-// Función Listar Productos
+// Función Listar Usuarios
+function listarUsuarios() {
+  const cantidadUsuarios = document.getElementById("cantidadUsuarios");
+  cantidadUsuarios.innerHTML = `${usuarios.length}`;
+  listaUsuarios.querySelector("tbody").innerHTML = ""; // Limpiamos el tbody
 
+  usuarios.forEach((usuario) => {
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+              
+                <td>${usuario.usuario}</td>
+                <td>${usuario.email}</td>
+                <td>*********</td>
+                <td>
+                  <button type="button" class="btn btn-outline-primary">
+                    <i class="bi bi-pencil"></i>
+                  </button>
+                  <button type="button" class="btn btn-outline-danger">
+                    <i class="bi bi-trash3"></i>
+                  </button>
+                </td>
+              `;
+    listaUsuarios.querySelector("tbody").appendChild(tr);
+  });
+  localStorage.setItem("usuarios", JSON.stringify(usuarios));
+}
+
+// Función Listar Productos
 function listarProductos() {
   const cantidadProductos = document.getElementById("cantidadProductos");
   cantidadProductos.innerHTML = `${productos.length}`;
@@ -169,7 +201,7 @@ function listarProductos() {
   productos.forEach((producto) => {
     const tr = document.createElement("tr");
     tr.innerHTML = `
-    <th scope="row" class="align-middle">${producto.id}</th>
+              <th scope="row" class="align-middle">${producto.id}</th>
                 <td class="align-middle ${
                   producto.promotion ? `text-bg-warning` : ``
                 }">${producto.name}${producto.promotion ? ` *` : ``}</td>
@@ -185,7 +217,9 @@ function listarProductos() {
                   </a>
                 </td>
                 <td class="align-middle">
-                  <button type="button" class="btn btn-outline-primary" data-id="${producto.id}">
+                  <button type="button" class="btn btn-outline-primary" data-id="${
+                    producto.id
+                  }">
                     <i class="bi bi-pencil" data-id="${producto.id}"></i>
                   </button>
                   <button 
@@ -196,10 +230,10 @@ function listarProductos() {
                     data-bs-toggle="popover" 
                     data-bs-placement="left" 
                     data-bs-content="Left popover"
-                    ><i class="bi bi-trash3 eliminarproducto" data-id="${producto.id}"></i>                    
-                  </button>
-                  
-    `;/* <i class="bi bi-trash3 eliminarproducto" data-id="${producto.id}"></i> */
+                    ><i class="bi bi-trash3 eliminarproducto" data-id="${
+                      producto.id
+                    }"></i>                    
+                  </button>`;
     listaProductos.querySelector("tbody").appendChild(tr);
   });
 

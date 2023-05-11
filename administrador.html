@@ -227,16 +227,15 @@
                 <th scope="col-1">Acciones</th>
               </tr>
             </thead>
-            <tbody>
-              <!-- <tr class="align-middle"></tr> -->
-            </tbody>
+            <tbody></tbody>
           </table>
           <h6>* : Este producto está promocionándose</h6>
           <!-- /Administrar productos -->
           <hr />
           <!-- Administrar usuarios -->
           <p class="fs-2 bg-warning">Administrar Usuarios</p>
-          <table class="table">
+          <h4>Total de Usuarios registrados : <span id="cantidadUsuarios"></span></h4>
+          <table class="table" id="listaUsuarios">
             <thead>
               <tr>
                 <th scope="col">Usuario</th>
@@ -245,21 +244,7 @@
                 <th scope="col">Acción</th>
               </tr>
             </thead>
-            <tbody>
-              <tr class="align-middle">
-                <td>admin</td>
-                <td>admin@rollingcode.com.ar</td>
-                <td>*********</td>
-                <td>
-                  <button type="button" class="btn btn-outline-primary">
-                    <i class="bi bi-pencil"></i>
-                  </button>
-                  <button type="button" class="btn btn-outline-danger">
-                    <i class="bi bi-trash3"></i>
-                  </button>
-                </td>
-              </tr>
-            </tbody>
+            <tbody></tbody>
           </table>
           <!-- /Administrar usuarios -->
         </div>
@@ -273,6 +258,5 @@
       crossorigin="anonymous"
     ></script>
     <script type="module" src="./js/administrador.js"></script>
-
   </body>
 </html>
