@@ -165,12 +165,7 @@ listaProductos.addEventListener("click", (e) => {
       toastTrigger.addEventListener('click', () => {
         toastBootstrap.show()
       })
-    }   
-    /* if (index !== -1) {
-      productos.splice(index, 1);
-      //agregar la funcion para actualizar la lista de productos.
-      listarProductos();
-    } */
+    } 
   }
 
   if (e.target.classList.contains("eliminarproductoConfirmado")) {
@@ -192,8 +187,23 @@ listaProductos.addEventListener("click", (e) => {
 // Función Eliminar Usuario
 listaUsuarios.addEventListener("click", (e) => {
   if (e.target.classList.contains("eliminarusuario")) {
-    const usuario = e.target.dataset.usuario; // Obtenemos el id del producto a eliminar
+    const usuario = e.target.dataset.usuario; // Obtenemos el usuario a eliminar
+    const toastTrigger = document.getElementById(usuario);
+    const toastLiveExample = document.getElementById('liveToast'+usuario);
+
+    if (toastTrigger) {
+      const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
+      toastTrigger.addEventListener('click', () => {
+        toastBootstrap.show()
+      })
+    } 
+  }
+
+  if (e.target.classList.contains("eliminarusuarioConfirmado")) {
+    console.log(`1`)
+    const usuario = e.target.dataset.usuario; // Obtenemos el usuario a eliminar
     const index = usuarios.findIndex((producto) => producto.usuario === usuario);
+    console.log(usuario,index)
     if (index !== -1) {
       usuarios.splice(index, 1);
       //agregar la funcion para actualizar la lista de productos.
@@ -221,6 +231,7 @@ function listarUsuarios() {
                     <i class="bi bi-pencil"></i>
                   </button>
                   <button 
+                      id="${usuario.usuario}"
                       type="button" 
                       class="btn btn-outline-danger eliminarusuario" 
                       data-usuario="${usuario.usuario}">
@@ -228,6 +239,25 @@ function listarUsuarios() {
                         data-usuario="${usuario.usuario}"></i>
                   </button>
                 </td>
+                <div class="toast-container position-fixed bottom-0 end-0 p-3">
+                  <div id="liveToast${usuario.usuario}" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header">
+                      <strong class="me-auto">Alerta de borrado</strong>
+                      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body">
+                      ¿Desea eliminar <b>${usuario.usuario}</b>?
+                      <br>
+                      <button 
+                      id="${usuario.usuario}"
+                      type="button" 
+                      class="btn btn-danger mt-3 eliminarusuarioConfirmado" 
+                      data-usuario="${usuario.usuario}">
+                        <i class="bi bi-trash3 eliminarusuarioConfirmado" data-id="${usuario.usuario}"></i> Eliminar                    
+                      </button>
+                    </div>
+                  </div>
+                </div>
               `;
     listaUsuarios.querySelector("tbody").appendChild(tr);
   });
@@ -250,8 +280,8 @@ function listarProductos() {
                   producto.promotion ? `text-bg-warning` : ``
                 }">${producto.name}${producto.promotion ? ` *` : ``}</td>
                 <td class="align-middle">${producto.category}</td>
-                <td class="align-middle">${producto.description}</td>
-                <td class="align-middle">${producto.tags}</td>
+                <td class="align-middle text-break">${producto.description}</td>
+                <td class="align-middle text-break">${producto.tags}</td>
                 <td class="align-middle">$${producto.price}</td>
                 <td class="align-middle">
                   <a href="${producto.url}" target="_blank">
@@ -278,14 +308,14 @@ function listarProductos() {
                       <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                     </div>
                     <div class="toast-body">
-                      ¿Desea eliminar ${producto.name}?
+                      ¿Desea eliminar <b>${producto.name}</b>?
                       <br>
                       <button 
                       id="${producto.id}"
                       type="button" 
-                      class="btn btn-outline-danger mt-3 eliminarproductoConfirmado" 
+                      class="btn btn-danger mt-3 eliminarproductoConfirmado" 
                       data-id="${producto.id}">
-                        <i class="bi bi-trash3 eliminarproducto" data-id="${producto.id}"></i> Eliminar                    
+                        <i class="bi bi-trash3 eliminarproductoConfirmado" data-id="${producto.id}"></i> Eliminar                    
                       </button>
                     </div>
                   </div>
