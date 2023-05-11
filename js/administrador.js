@@ -134,18 +134,13 @@ addButton.addEventListener("click", (e) => {
     productos.push(producto);
     localStorage.setItem("productos", JSON.stringify(productos));
   } else if (mode === "editar") {
-    console.log(`1`);
     // Validamos que los cambios sean permitidos:
     if (!validarFormularioJS(name, price, category, tags, url, description)) {
       return;
     }
-    console.log(`2`);
 
     // Buscamos el indice del producto a editar
     const index = parseInt(productos.findIndex((producto) => producto.id === editId));
-    console.log(`3`);
-    console.log(index);
-    console.log(editId);
     if (index !== -1) {
       // Si el producto existe
       const product = productos[index]; // Obtenemos el producto a editar del array
@@ -156,11 +151,8 @@ addButton.addEventListener("click", (e) => {
       product.tags = tags;
       product.promotion = promotion;
       product.category = category;
-      console.log(`4`);
     }
   }
-
-  console.log("pase por aqui");
 
   agregarProductoForm.dataset.mode = "add"; // Cambiamos el modo del boton
   addButton.textContent = "Agregar"; // Cambiamos el texto del boton
