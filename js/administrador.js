@@ -33,6 +33,7 @@ if (obtenerUsuarios) {
   usuarios = JSON.parse(obtenerUsuarios) || [];
   listarUsuarios();
 }
+//--
 
 // Función return Categoria
 function retornaCategoria(c) {
@@ -42,6 +43,7 @@ function retornaCategoria(c) {
     }
   }
 }
+//--
 
 // Validar form con JS
 function validarFormularioJS(name, price, category, tags, url, description) {
@@ -59,6 +61,7 @@ function validarFormularioJS(name, price, category, tags, url, description) {
     description != ""
   );
 }
+//--
 
 // Validar URL
 function validarURL(miurl) {
@@ -69,6 +72,7 @@ function validarURL(miurl) {
     return false;
   }
 }
+//--
 
 // Función validación Bootstrap
 function validacionBootstrap() {
@@ -93,6 +97,7 @@ function validacionBootstrap() {
     );
   });
 }
+//--
 
 // Función Agregar/modificar Producto
 addButton.addEventListener("click", (e) => {
@@ -146,12 +151,32 @@ addButton.addEventListener("click", (e) => {
 
   listarProductos();
 });
+//--
 
 // Función eliminar Producto
 listaProductos.addEventListener("click", (e) => {
   if (e.target.classList.contains("eliminarproducto")) {
     const id = parseInt(e.target.dataset.id); // Obtenemos el id del producto a eliminar
+    const toastTrigger = document.getElementById(id)
+    const toastLiveExample = document.getElementById('liveToast'+id)
+
+    if (toastTrigger) {
+      const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
+      toastTrigger.addEventListener('click', () => {
+        toastBootstrap.show()
+      })
+    }   
+    /* if (index !== -1) {
+      productos.splice(index, 1);
+      //agregar la funcion para actualizar la lista de productos.
+      listarProductos();
+    } */
+  }
+
+  if (e.target.classList.contains("eliminarproductoConfirmado")) {
+    const id = parseInt(e.target.dataset.id); // Obtenemos el id del producto a eliminar
     const index = productos.findIndex((producto) => producto.id === id);
+
     if (index !== -1) {
       productos.splice(index, 1);
       //agregar la funcion para actualizar la lista de productos.
@@ -159,10 +184,24 @@ listaProductos.addEventListener("click", (e) => {
     }
   }
 });
+//--
 
 // Función Editar Usuario
+//--
 
 // Función Eliminar Usuario
+listaUsuarios.addEventListener("click", (e) => {
+  if (e.target.classList.contains("eliminarusuario")) {
+    const usuario = e.target.dataset.usuario; // Obtenemos el id del producto a eliminar
+    const index = usuarios.findIndex((producto) => producto.usuario === usuario);
+    if (index !== -1) {
+      usuarios.splice(index, 1);
+      //agregar la funcion para actualizar la lista de productos.
+      listarUsuarios();
+    }
+  }
+});
+//--
 
 // Función Listar Usuarios
 function listarUsuarios() {
@@ -181,8 +220,12 @@ function listarUsuarios() {
                   <button type="button" class="btn btn-outline-primary">
                     <i class="bi bi-pencil"></i>
                   </button>
-                  <button type="button" class="btn btn-outline-danger">
-                    <i class="bi bi-trash3"></i>
+                  <button 
+                      type="button" 
+                      class="btn btn-outline-danger eliminarusuario" 
+                      data-usuario="${usuario.usuario}">
+                        <i class="bi bi-trash3 eliminarusuario" 
+                        data-usuario="${usuario.usuario}"></i>
                   </button>
                 </td>
               `;
@@ -190,6 +233,7 @@ function listarUsuarios() {
   });
   localStorage.setItem("usuarios", JSON.stringify(usuarios));
 }
+//--
 
 // Función Listar Productos
 function listarProductos() {
@@ -217,28 +261,41 @@ function listarProductos() {
                   </a>
                 </td>
                 <td class="align-middle">
-                  <button type="button" class="btn btn-outline-primary" data-id="${
-                    producto.id
-                  }">
+                  <button type="button" class="btn btn-outline-primary" data-id="${producto.id}">
                     <i class="bi bi-pencil" data-id="${producto.id}"></i>
                   </button>
                   <button 
+                    id="${producto.id}"
                     type="button" 
                     class="btn btn-outline-danger mt-1 eliminarproducto" 
-                    data-id="${producto.id}" 
-                    data-bs-container="body" 
-                    data-bs-toggle="popover" 
-                    data-bs-placement="left" 
-                    data-bs-content="Left popover"
-                    ><i class="bi bi-trash3 eliminarproducto" data-id="${
-                      producto.id
-                    }"></i>                    
-                  </button>`;
+                    data-id="${producto.id}">
+                    <i class="bi bi-trash3 eliminarproducto" data-id="${producto.id}"></i>                    
+                  </button>
+                  <div class="toast-container position-fixed bottom-0 end-0 p-3">
+                  <div id="liveToast${producto.id}" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header">
+                      <strong class="me-auto">Alerta de borrado</strong>
+                      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body">
+                      ¿Desea eliminar ${producto.name}?
+                      <br>
+                      <button 
+                      id="${producto.id}"
+                      type="button" 
+                      class="btn btn-outline-danger mt-3 eliminarproductoConfirmado" 
+                      data-id="${producto.id}">
+                        <i class="bi bi-trash3 eliminarproducto" data-id="${producto.id}"></i> Eliminar                    
+                      </button>
+                    </div>
+                  </div>
+                </div>`;
     listaProductos.querySelector("tbody").appendChild(tr);
   });
 
   // funcion que guarda los productos en el local storage
   localStorage.setItem("productos", JSON.stringify(productos));
 }
+//--
 
 // Función Listar Usuarios
