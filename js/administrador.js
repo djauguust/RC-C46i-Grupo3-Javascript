@@ -134,10 +134,6 @@ addButton.addEventListener("click", (e) => {
     productos.push(producto);
     localStorage.setItem("productos", JSON.stringify(productos));
   } else if (mode === "editar") {
-    // Validamos que los cambios sean permitidos:
-    if (!validarFormularioJS(name, price, category, tags, url, description)) {
-      return;
-    }
 
     // Buscamos el indice del producto a editar
     const index = parseInt(productos.findIndex((producto) => producto.id === editId));
@@ -153,10 +149,11 @@ addButton.addEventListener("click", (e) => {
       product.category = category;
     }
   }
-
+  
   agregarProductoForm.dataset.mode = "add"; // Cambiamos el modo del boton
   addButton.textContent = "Agregar"; // Cambiamos el texto del boton
-
+  agregarProductoForm.reset();
+  
   listarProductos();
 });
 //--
@@ -165,16 +162,19 @@ addButton.addEventListener("click", (e) => {
 listaProductos.addEventListener("click", (e) => {
   if (e.target.classList.contains("eliminarproducto")) {
     const id = parseInt(e.target.dataset.id); // Obtenemos el id del producto a eliminar
+
+    // Activación del toast por Bootstrap
     const toastTrigger = document.getElementById(id);
     const toastLiveExample = document.getElementById("liveToast" + id);
-
+    
     if (toastTrigger) {
       const toastBootstrap =
-        bootstrap.Toast.getOrCreateInstance(toastLiveExample);
+      bootstrap.Toast.getOrCreateInstance(toastLiveExample);
       toastTrigger.addEventListener("click", () => {
         toastBootstrap.show();
       });
     }
+    // Fin Activación del toast por Bootstrap
   }
 
   // Segmento que confirma el borrado de producto
@@ -216,15 +216,47 @@ listaProductos.addEventListener("click", (e) => {
 //--
 
 // Función Editar Usuario
+listaUsuarios.addEventListener("click", (e) => {
+  // Cargar Modal con información a modificar
+  if (e.target.classList.contains("editarUsuario")) { // Si clickeo modificar, debo acceder al modal
+    const usuario = e.target.dataset.usuario; // Obtenemos el usuario a modificar
+    const user = usuarios.find((p) => p.usuario === usuario); // Traigo el usuario
+    const index = usuarios.findIndex((p) => p.usuario === usuario); // Traigo su ubicación
+
+    if (user) { // Si el usuario existe
+      document.getElementById("email"+index).value = user.email; // Sólo cargo el email
+    }
+  }
+
+  // "Guardar Cambios"
+  if (e.target.classList.contains("guardarCambios")) { 
+    const usuario = e.target.dataset.usuario; // Obtenemos el usuario a modificar
+    const index = usuarios.findIndex((p) => p.usuario === usuario); // Traigo su ubicación
+    const emailNuevo = document.getElementById("email"+index).value;
+    const contraseniaNueva = document.getElementById("contrasenia"+index).value;
+    const contraseniaNueva2 = document.getElementById("repitecontrasenia"+index).value;
+
+    if(contraseniaNueva !== contraseniaNueva2){
+      console.log(`No coinciden las pass`)
+      return;
+    }
+
+    if(index != -1){
+      const userEdit = usuarios[index];
+      userEdit.email = emailNuevo;
+      userEdit.contrasenia = contraseniaNueva;
+      listarUsuarios();
+    }
+  }
+});
 //--
 
 // Función Eliminar Usuario
 listaUsuarios.addEventListener("click", (e) => {
   if (e.target.classList.contains("eliminarusuario")) {
     const usuario = e.target.dataset.usuario; // Obtenemos el usuario a eliminar
-    const toastTrigger = document.getElementById(usuario);
+    const toastTrigger = document.getElementById(`primerEliminar`+usuario);
     const toastLiveExample = document.getElementById("liveToast" + usuario);
-
     if (toastTrigger) {
       const toastBootstrap =
         bootstrap.Toast.getOrCreateInstance(toastLiveExample);
@@ -236,12 +268,10 @@ listaUsuarios.addEventListener("click", (e) => {
 
   // Segmento que confirma el borrado del Usuario
   if (e.target.classList.contains("eliminarusuarioConfirmado")) {
-    console.log(`1`);
+
     const usuario = e.target.dataset.usuario; // Obtenemos el usuario a eliminar
-    const index = usuarios.findIndex(
-      (producto) => producto.usuario === usuario
-    );
-    console.log(usuario, index);
+    const index = usuarios.findIndex((p) => p.usuario === usuario);
+
     if (index !== -1) {
       usuarios.splice(index, 1);
       //agregar la funcion para actualizar la lista de productos.
@@ -257,26 +287,131 @@ function listarUsuarios() {
   cantidadUsuarios.innerHTML = `${usuarios.length}`;
   listaUsuarios.querySelector("tbody").innerHTML = ""; // Limpiamos el tbody
 
-  usuarios.forEach((usuario) => {
+  usuarios.forEach((usuario, index) => {
     const tr = document.createElement("tr");
     tr.innerHTML = `
               
-                <td>${usuario.usuario}</td>
-                <td>${usuario.email}</td>
-                <td>*********</td>
+                <td class="align-middle">${usuario.usuario}</td>
+                <td class="align-middle">${usuario.email}</td>
+                <td class="align-middle">*********</td>
                 <td>
-                  <button type="button" class="btn btn-outline-primary">
-                    <i class="bi bi-pencil"></i>
+                ${ usuario.usuario === `admin` ? `` : 
+                    `
+                  <button 
+                    type="button" 
+                    class="btn btn-outline-primary editarUsuario" 
+                    data-bs-toggle="modal" 
+                    data-bs-target="#usuario${index}"
+                    data-usuario="${usuario.usuario}"
+                  >
+                      <i 
+                        class="bi bi-pencil editarUsuario"
+                        data-usuario="${usuario.usuario}"
+                      ></i>
                   </button>
                   <button 
-                      id="${usuario.usuario}"
+                      id="primerEliminar${usuario.usuario}"
                       type="button" 
                       class="btn btn-outline-danger eliminarusuario" 
                       data-usuario="${usuario.usuario}">
                         <i class="bi bi-trash3 eliminarusuario" 
                         data-usuario="${usuario.usuario}"></i>
                   </button>
-                </td>
+                `}
+                
+                <!-- Modal -->
+                <div 
+                  class="modal fade" 
+                  id="usuario${index}" 
+                  tabindex="-1" 
+                  aria-labelledby="exampleModalLabel" 
+                  aria-hidden="true"
+                >
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Editar Usuario</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <form
+                          id="editarUsuarioForm${index}"
+                          data-mode="add"
+                          class="needs-validation"
+                          novalidate
+                        >
+                          <fieldset disabled>
+                            <div class="mb-3">
+                              <label for="usuario${index}">
+                                <p class="fs-6">Usuario</p>
+                              </label>
+                              <input
+                                class="form-control"
+                                type="text"                            
+                                id="usuario${index}"
+                                placeholder="${usuario.usuario}"
+                                required
+                              />
+                              <div class="valid-feedback">¡Luce bien!</div>
+                              <div class="invalid-feedback">Por favor elige un usuario válido.</div>
+                            </div>
+                          </fieldset>
+                          <div class="mb-3">
+                            <label for="email${index}">
+                              <p class="fs-6">E-mail</p>
+                            </label>
+                            <input
+                              class="form-control"
+                              type="email"                            
+                              id="email${index}"
+                              required
+                            />
+                            <div class="valid-feedback">¡Luce bien!</div>
+                            <div class="invalid-feedback">Por favor elige un email válido.</div>
+                          </div>
+                          <div class="mb-3">
+                            <label for="contrasenia${index}">
+                              <p class="fs-6">Contraseña</p>
+                            </label>
+                            <input
+                              class="form-control"
+                              type="password"                            
+                              id="contrasenia${index}"
+                              required
+                            />
+                            <div class="valid-feedback">¡Luce bien!</div>
+                            <div class="invalid-feedback">Por favor elige una contraseña válida.</div>
+                          </div>
+                          <div class="mb-3">
+                            <label for="repitecontrasenia${index}">
+                              <p class="fs-6">Repita la Contraseña</p>
+                            </label>
+                            <input
+                              class="form-control"
+                              type="password"                            
+                              id="repitecontrasenia${index}"
+                              required
+                            />
+                            <div class="valid-feedback">¡Luce bien!</div>
+                            <div class="invalid-feedback">Por favor elige una contraseña válida.</div>
+                          </div>
+                        </form>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                        <button 
+                          type="button" 
+                          class="btn btn-success guardarCambios" 
+                          data-usuario="${usuario.usuario}"
+                          data-bs-dismiss="modal"
+                        >
+                            Guardar Cambios
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Toast -->
                 <div class="toast-container position-fixed bottom-0 end-0 p-3">
                   <div id="liveToast${usuario.usuario}" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
                     <div class="toast-header">
@@ -296,6 +431,7 @@ function listarUsuarios() {
                     </div>
                   </div>
                 </div>
+                </td>
               `;
     listaUsuarios.querySelector("tbody").appendChild(tr);
   });
@@ -329,9 +465,7 @@ function listarProductos() {
                   </a>
                 </td>
                 <td class="align-middle">
-                  <button type="button" class="btn btn-outline-primary editar" data-id="${
-                    producto.id
-                  }">
+                  <button type="button" class="btn btn-outline-primary editar" data-id="${producto.id}">
                     <i class="bi bi-pencil editar" data-id="${producto.id}"></i>
                   </button>
                   <button 
