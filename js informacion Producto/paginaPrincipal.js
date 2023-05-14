@@ -7,6 +7,8 @@ const cardProducto = document.getElementById('cardProducto');
 
 const filtro = document.getElementById('filtro');
 
+
+//FILTRO DEL CATALOGO
 filtro.addEventListener('change', function () {
   const opcionSeleccionada = filtro.value;
   mostrarProductos(opcionSeleccionada)
@@ -29,8 +31,9 @@ function mostrarProductos(categoria){
           <div class="card-body bg-body-tertiary">
             <h5 class="card-title">${producto.name}</h5>
             <h4 class="card-text">$${producto.price}</h4>
-            <a href="detalle.html?name=${producto.name}&price=${producto.price}&url=${producto.url}&description=${producto.description}&categoria=${producto.category}&id=${producto.id}" class="btn btn-warning">Ver detalle</a>
-          </div>
+            <a href="detalle.html?name=${producto.name}&price=${producto.price}&url=${producto.url}&description=${producto.description}&categoria=${producto.category}&id=${producto.id}" class="btn btn-warning">Ver detalle</a><br>
+            <a class="btn btn-light text-warning mt-2">Añadir a favoritos <i class="bi bi-heart-fill"></i></a>
+            </div>
         </div>
       </div>
     `;
