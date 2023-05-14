@@ -78,44 +78,44 @@
                   class="form-check-input"
                   type="radio"
                   name="categoria"
-                  id="tazas1"
-                  value="Tazas"
+                  id="tazas"
+                  value="tazas"
                   required
                 />
-                <label class="form-check-label" for="tazas1"> Tazas </label>
+                <label class="form-check-label" for="tazas"> Tazas </label>
               </div>
               <div class="form-check">
                 <input
                   class="form-check-input"
                   type="radio"
                   name="categoria"
-                  id="remeras1"
-                  value="Remeras"
+                  id="remeras"
+                  value="remeras"
                   required
                 />
-                <label class="form-check-label" for="remeras1"> Remeras </label>
+                <label class="form-check-label" for="remeras"> Remeras </label>
               </div>
               <div class="form-check">
                 <input
                   class="form-check-input"
                   type="radio"
                   name="categoria"
-                  id="funkos1"
-                  value="Funkos"
+                  id="funkos"
+                  value="funkos"
                   required
                 />
-                <label class="form-check-label" for="funkos1"> Funkos </label>
+                <label class="form-check-label" for="funkos"> Funkos </label>
               </div>
               <div class="form-check">
                 <input
                   class="form-check-input"
                   type="radio"
                   name="categoria"
-                  id="otros1"
-                  value="Otros"
+                  id="otros"
+                  value="otros"
                   required
                 />
-                <label class="form-check-label" for="otros1"> Otros </label>
+                <label class="form-check-label" for="otros"> Otros </label>
                 <div class="invalid-feedback">
                   Por favor elige una categoría
                 </div>
@@ -158,16 +158,19 @@
               <label for="precio1">
                 <p class="fs-4">Precio</p>
               </label>
-              <input
-                class="form-control"
-                type="number"
-                min="0"
-                placeholder="$1000"
-                id="precio1"
-                required
-              />
-              <div class="valid-feedback">¡Luce bien!</div>
-              <div class="invalid-feedback">Por favor elige un precio.</div>
+              <div class="input-group">
+                <span class="input-group-text">$</span>
+                <input
+                  class="form-control"
+                  type="number"
+                  min="0"
+                  placeholder="1000"
+                  id="precio1"
+                  required
+                />
+                <div class="valid-feedback">¡Luce bien!</div>
+                <div class="invalid-feedback">Por favor elige un precio.</div>
+              </div>
             </div>
 
             <div class="mb-3">
@@ -227,16 +230,17 @@
                 <th scope="col-1">Acciones</th>
               </tr>
             </thead>
-            <tbody>
-              <!-- <tr class="align-middle"></tr> -->
-            </tbody>
+            <tbody></tbody>
           </table>
           <h6>* : Este producto está promocionándose</h6>
           <!-- /Administrar productos -->
           <hr />
           <!-- Administrar usuarios -->
           <p class="fs-2 bg-warning">Administrar Usuarios</p>
-          <table class="table">
+          <h4>
+            Total de Usuarios registrados : <span id="cantidadUsuarios"></span>
+          </h4>
+          <table class="table" id="listaUsuarios">
             <thead>
               <tr>
                 <th scope="col">Usuario</th>
@@ -245,21 +249,7 @@
                 <th scope="col">Acción</th>
               </tr>
             </thead>
-            <tbody>
-              <tr class="align-middle">
-                <td>admin</td>
-                <td>admin@rollingcode.com.ar</td>
-                <td>*********</td>
-                <td>
-                  <button type="button" class="btn btn-outline-primary">
-                    <i class="bi bi-pencil"></i>
-                  </button>
-                  <button type="button" class="btn btn-outline-danger">
-                    <i class="bi bi-trash3"></i>
-                  </button>
-                </td>
-              </tr>
-            </tbody>
+            <tbody></tbody>
           </table>
           <!-- /Administrar usuarios -->
         </div>
@@ -273,6 +263,5 @@
       crossorigin="anonymous"
     ></script>
     <script type="module" src="./js/administrador.js"></script>
-
   </body>
 </html>
