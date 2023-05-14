@@ -6,6 +6,13 @@ function logear() {
 
   if (email == usuario.email && pass == usuario.contrasenia) {
     //Muestra mensaje de logeo correcto
+    const form = document.querySelector("#form");
+
+    form.addEventListener("submit", function (event) {
+      // Detener el envío por defecto
+      event.preventDefault();
+
+    });
     Swal.fire({
       title: "Bienvenido!" + "" + usuario.usuario,
       icon: "success",
