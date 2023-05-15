@@ -1,10 +1,7 @@
 import { generarCodigoProducto } from "../js/codigoProducto.js";
 
 let productos = [];
-let usuarios = [
-  { usuario: "admin", email: "admin", contrasenia: "admin" },
-  { usuario: "augusto", email: "augusto@gmail.com", contrasenia: "1234" },
-];
+let usuarios = [];
 
 // Obtener elementos del DOM
 const listaProductos = document.getElementById("listaProductos");
@@ -17,6 +14,7 @@ const precioProducto = document.getElementById("precio1");
 const urlProducto = document.getElementById("url1");
 const promocionarProducto = document.getElementById("promocion1");
 const addButton = document.getElementById("addProductButton");
+const btnCancelar = document.getElementById("cancelarEdicion");
 
 const listaUsuarios = document.getElementById("listaUsuarios");
 // hay que hacer un segundo formulario para editar usuarios!!!
@@ -148,6 +146,10 @@ addButton.addEventListener("click", (e) => {
       product.promotion = promotion;
       product.category = category;
     }
+
+    // Sacamos el botón Cancelar
+    btnCancelar.className = "d-none";
+    //-- /Sacamos el botón Cancelar
   }
   
   agregarProductoForm.dataset.mode = "add"; // Cambiamos el modo del boton
@@ -157,6 +159,15 @@ addButton.addEventListener("click", (e) => {
   listarProductos();
 });
 //--
+
+// Función que cuando apretamos el botón cancelar de "modificar producto" nos limpia el formulario
+btnCancelar.addEventListener("click", (e) => {
+  agregarProductoForm.dataset.mode = "add"; // Cambiamos el modo del boton
+  addButton.textContent = "Agregar"; // Cambiamos el texto del boton
+  agregarProductoForm.reset();
+  btnCancelar.className = "d-none";
+})
+//-- /Función que cuando apretamos el botón cancelar de "modificar producto" nos limpia el formulario
 
 // Función eliminar Producto
 listaProductos.addEventListener("click", (e) => {
@@ -211,6 +222,11 @@ listaProductos.addEventListener("click", (e) => {
       agregarProductoForm.dataset.editId = id; // Seteamos el id del producto a editar
       addButton.textContent = "Editar"; // Cambiamos el texto del boton
     }
+
+    // Aparece el botón cancelar
+    btnCancelar.className = "d-block d-grid gap-2 col-4 mx-auto";
+    //-- /Aparece el botón cancelar
+
   }
 });
 //--
@@ -222,8 +238,10 @@ listaUsuarios.addEventListener("click", (e) => {
     const usuario = e.target.dataset.usuario; // Obtenemos el usuario a modificar
     const user = usuarios.find((p) => p.usuario === usuario); // Traigo el usuario
     const index = usuarios.findIndex((p) => p.usuario === usuario); // Traigo su ubicación
+    const formEditUser = document.getElementById("editarUsuarioForm"+index);
 
     if (user) { // Si el usuario existe
+      formEditUser.reset();
       document.getElementById("email"+index).value = user.email; // Sólo cargo el email
     }
   }
@@ -237,18 +255,38 @@ listaUsuarios.addEventListener("click", (e) => {
     const contraseniaNueva2 = document.getElementById("repitecontrasenia"+index).value;
 
     if(contraseniaNueva !== contraseniaNueva2){
-      console.log(`No coinciden las pass`)
-      return;
+      CartelDeError(index,'Las contraseñas no coinciden','danger');
     }
 
-    if(index != -1){
+    // Una vez validado los cambios, guardo las modificaciones realizadas:
+    if(index != -1 && contraseniaNueva === contraseniaNueva2){
       const userEdit = usuarios[index];
       userEdit.email = emailNuevo;
       userEdit.contrasenia = contraseniaNueva;
+      formEditUser.reset();
       listarUsuarios();
     }
+
   }
 });
+//--
+
+// Función Cartelito para mostrar errores en Editar Usuario
+function CartelDeError(index,message, type){
+  const alertPlaceholder = document.getElementById('alertaDeEditarUsuario'+index)
+  const appendAlert = (message, type) => {
+    const wrapper = document.createElement('div')
+    wrapper.innerHTML = [
+      `<div class="alert alert-${type} alert-dismissible" role="alert">`,
+      `   <div>${message}</div>`,
+      '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+      '</div>'
+    ].join('')
+
+    alertPlaceholder.append(wrapper)
+  }
+  appendAlert(message, type)
+}
 //--
 
 // Función Eliminar Usuario
@@ -396,6 +434,7 @@ function listarUsuarios() {
                             <div class="invalid-feedback">Por favor elige una contraseña válida.</div>
                           </div>
                         </form>
+                        <div id="alertaDeEditarUsuario${index}"></div>
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
@@ -403,7 +442,7 @@ function listarUsuarios() {
                           type="button" 
                           class="btn btn-success guardarCambios" 
                           data-usuario="${usuario.usuario}"
-                          data-bs-dismiss="modal"
+                          
                         >
                             Guardar Cambios
                         </button>
