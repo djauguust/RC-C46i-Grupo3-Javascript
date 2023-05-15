@@ -1,22 +1,78 @@
-.d-flex-center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
+
+
+/* Color principal */
+.body {
+ background-color: #ffc107;
 }
 .boton {
-  
-  border-color: black;
-
+  background-color: #ffc107;
 }
-.modal-header {
+
+/* Color de texto */
+.text-body-secondary {
+  color: #6c757d;
+}
+
+/* Color de botón */
+.btn-warning {
   background-color: black;
-  font-size: large;
+  border-color: #ffc107;
+  color: #212529;
+  
+}
+
+.btn-warning:hover {
+  background-color: #e0a800;
+  border-color: #e0a800;
+  color: #212529;
+}
+
+/* Estilos de formulario */
+.form-control.is-valid {
+  border-color: #198754;
+  background-image: none;
+}
+
+.form-control.is-valid:focus,
+.form-control.is-valid:active {
+  border-color: #198754;
+  box-shadow: 0 0 0 0.25rem rgba(25, 135, 84, 0.25);
+}
+
+.valid-feedback {
+  display: block;
+  width: 100%;
+  margin-top: 0.25rem;
+  font-size: 80%;
+  color: #198754;
+}
+
+/* Estilos de la ventana modal */
+.modal-content {
+  background-color: #ffffff;
+}
+
+.modal-title {
+  color: #212529;
+}
+
+.modal-header .btn-close {
+  color: #212529;
+  opacity: 1;
 }
 
 .modal-body {
-  background-color: black;
-  color: #ffda6a; 
-  font-display: black;
-  
+  color: #212529;
+}
+
+/* Estilos del botón de registro en la ventana modal */
+.btn-outline-warning {
+  color: #ffc107;
+  border-color: #ffc107;
+}
+
+.btn-outline-warning:hover {
+  background-color: #e0a800;
+  border-color: #e0a800;
+  color: #212529;
 }

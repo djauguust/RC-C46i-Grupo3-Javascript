@@ -16,7 +16,8 @@
         <div class="d-flex-center">
             <div class="boton text-center text-body-secondary">
                 <h1>Registro de Usuarios</h1>
-                <button type="button" class="btn btn-warning " data-bs-toggle="modal" data-bs-target="#registroModal">
+                <button type="validation-button" class="btn btn-warning " data-bs-toggle="modal"
+                    data-bs-target="#registroModal">
                     Registro
                 </button>
             </div>
@@ -34,20 +35,27 @@
                     <div class="modal-body">
                         <form id="registroForm">
                             <div class="mb-3 ">
-                                <label for="nombre" class="form-label">Nombre:</label>
-                                <input type="text" class="form-control" id="nombre" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="email" class="form-label">Correo Electrónico:</label>
-                                <input type="email" class="form-control" id="email" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="password" class="form-label">Contraseña:</label>
-                                <input type="password" class="form-control" id="password" required>
-                            </div>
-                            <!-- Agrega más campos si lo deseas -->
+                                <label class="form-label">Nombre de Usuario</label>
+                                <input type="text" class="form-control" placeholder="example" id="inputUserReg"
+                                    minlength="3" maxlength="20" required>
+                                <div class="valid-feedback">
+                                    Buen nombre!
+                                </div>
+                                <div class="mb-3">
+                                    <label for="Email" class="form-label">Correo Electrónico:</label>
+                                    <input type="Email" class="form-control" id="email"
+                                        placeholder="example@example.com"
+                                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Password "Digitos, minusculas y mayusculas, entre 8-16
+                                        caracteres"</label>
+                                    <input type="password" class="form-control" placeholder="Password" id="inputPassReg"
+                                        required>
+                                </div>
+                                <!-- Agrega más campos si lo deseas -->
 
-                            <button type="submit" class="btn btn-outline-warning">Registrarse</button>
+                                <button type="submit" class="btn btn-outline-warning">Registrarse</button>
                         </form>
                     </div>
                 </div>
