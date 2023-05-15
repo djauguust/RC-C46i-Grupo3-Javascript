@@ -20,6 +20,11 @@ function logear() {
       timer: 3000,
       timerProgressBar: true,
     });
+    // Se guarda usuario logeado en local storage
+    const userLogin = {
+      userLogin: usuario.usuario,
+    };
+    localStorage.setItem("userLogin", JSON.stringify(userLogin));
     // Espera unos segundos segundos antes de redirigir al usuario
     setTimeout(function() {
         window.location.href = "pagina-principal.html";
