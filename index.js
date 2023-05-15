@@ -33,10 +33,10 @@ if(usuarioLogeado.userLogin==`none`){
     }
 } 
 
-/*btnCerrarSesion.addEventListener("click", (e) => {
+btnCerrarSesion.addEventListener("click", (e) => {
     if (usuarioLogeado !==`none`) {
         usuarioLogeado = [`none`]
         localStorage.setItem("userLogin", JSON.stringify(usuarioLogeado));
         localStorage.removeItem("user");
         window.location.replace("index.html");
-        } })*/
+        } })
