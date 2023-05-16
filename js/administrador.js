@@ -132,9 +132,10 @@ addButton.addEventListener("click", (e) => {
     productos.push(producto);
     localStorage.setItem("productos", JSON.stringify(productos));
   } else if (mode === "editar") {
-
     // Buscamos el indice del producto a editar
-    const index = parseInt(productos.findIndex((producto) => producto.id === editId));
+    const index = parseInt(
+      productos.findIndex((producto) => producto.id === editId)
+    );
     if (index !== -1) {
       // Si el producto existe
       const product = productos[index]; // Obtenemos el producto a editar del array
@@ -151,11 +152,11 @@ addButton.addEventListener("click", (e) => {
     btnCancelar.className = "d-none";
     //-- /Sacamos el botón Cancelar
   }
-  
+
   agregarProductoForm.dataset.mode = "add"; // Cambiamos el modo del boton
   addButton.textContent = "Agregar"; // Cambiamos el texto del boton
   agregarProductoForm.reset();
-  
+
   listarProductos();
 });
 //--
@@ -166,7 +167,7 @@ btnCancelar.addEventListener("click", (e) => {
   addButton.textContent = "Agregar"; // Cambiamos el texto del boton
   agregarProductoForm.reset();
   btnCancelar.className = "d-none";
-})
+});
 //-- /Función que cuando apretamos el botón cancelar de "modificar producto" nos limpia el formulario
 
 // Función eliminar Producto
@@ -177,10 +178,10 @@ listaProductos.addEventListener("click", (e) => {
     // Activación del toast por Bootstrap
     const toastTrigger = document.getElementById(id);
     const toastLiveExample = document.getElementById("liveToast" + id);
-    
+
     if (toastTrigger) {
       const toastBootstrap =
-      bootstrap.Toast.getOrCreateInstance(toastLiveExample);
+        bootstrap.Toast.getOrCreateInstance(toastLiveExample);
       toastTrigger.addEventListener("click", () => {
         toastBootstrap.show();
       });
@@ -226,7 +227,6 @@ listaProductos.addEventListener("click", (e) => {
     // Aparece el botón cancelar
     btnCancelar.className = "d-block d-grid gap-2 col-4 mx-auto";
     //-- /Aparece el botón cancelar
-
   }
 });
 //--
@@ -234,58 +234,83 @@ listaProductos.addEventListener("click", (e) => {
 // Función Editar Usuario
 listaUsuarios.addEventListener("click", (e) => {
   // Cargar Modal con información a modificar
-  if (e.target.classList.contains("editarUsuario")) { // Si clickeo modificar, debo acceder al modal
+  if (e.target.classList.contains("editarUsuario")) {
+    // Si clickeo modificar, debo acceder al modal
     const usuario = e.target.dataset.usuario; // Obtenemos el usuario a modificar
     const user = usuarios.find((p) => p.usuario === usuario); // Traigo el usuario
     const index = usuarios.findIndex((p) => p.usuario === usuario); // Traigo su ubicación
-    const formEditUser = document.getElementById("editarUsuarioForm"+index);
+    const formEditUser = document.getElementById("editarUsuarioForm" + index);
 
-    if (user) { // Si el usuario existe
+    if (user) {
+      // Si el usuario existe
       formEditUser.reset();
-      document.getElementById("email"+index).value = user.email; // Sólo cargo el email
+      document.getElementById("email" + index).value = user.email; // Sólo cargo el email
     }
   }
 
   // "Guardar Cambios"
-  if (e.target.classList.contains("guardarCambios")) { 
+  if (e.target.classList.contains("guardarCambios")) {
     const usuario = e.target.dataset.usuario; // Obtenemos el usuario a modificar
     const index = usuarios.findIndex((p) => p.usuario === usuario); // Traigo su ubicación
-    const emailNuevo = document.getElementById("email"+index).value;
-    const contraseniaNueva = document.getElementById("contrasenia"+index).value;
-    const contraseniaNueva2 = document.getElementById("repitecontrasenia"+index).value;
+    const emailNuevo = document.getElementById("email" + index).value;
+    const contraseniaNueva = document.getElementById(
+      "contrasenia" + index
+    ).value;
+    const contraseniaNueva2 = document.getElementById(
+      "repitecontrasenia" + index
+    ).value;
+    const formEditUser = document.getElementById("editarUsuarioForm" + index);
 
-    if(contraseniaNueva !== contraseniaNueva2){
-      CartelDeError(index,'Las contraseñas no coinciden','danger');
+    // Las contraseñas no son validadas
+    let regPass = /^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/;
+    if (!regPass.test(contraseniaNueva)) {
+      CartelDeError(index, "La contraseña debe ser más segura, debe contener al menos 8 caracteres alfanumericos entre minúsculas, mayúsculas y números", "danger");
+    }
+
+    // Las contraseñas no coinciden
+    if (contraseniaNueva !== contraseniaNueva2) {
+      CartelDeError(index, "Las contraseñas no coinciden", "danger");
     }
 
     // Una vez validado los cambios, guardo las modificaciones realizadas:
-    if(index != -1 && contraseniaNueva === contraseniaNueva2){
+    if (
+      index != -1 &&
+      contraseniaNueva === contraseniaNueva2 &&
+      contraseniaNueva.length > 8
+    ) {
+      console.log(`1`);
       const userEdit = usuarios[index];
       userEdit.email = emailNuevo;
       userEdit.contrasenia = contraseniaNueva;
       formEditUser.reset();
       listarUsuarios();
+      /* let btn = document.getElementById("SaveChanges"+index);
+      btn.setAttribute("data-bs-dismiss","modal") */
+      /* let shadow = document.getElementsByClassName("modal-backdrop");
+      shadow.className = "d-none"; */
+      window.location.href = "./administrador.html";
     }
-
   }
 });
 //--
 
 // Función Cartelito para mostrar errores en Editar Usuario
-function CartelDeError(index,message, type){
-  const alertPlaceholder = document.getElementById('alertaDeEditarUsuario'+index)
+function CartelDeError(index, message, type) {
+  const alertPlaceholder = document.getElementById(
+    "alertaDeEditarUsuario" + index
+  );
   const appendAlert = (message, type) => {
-    const wrapper = document.createElement('div')
+    const wrapper = document.createElement("div");
     wrapper.innerHTML = [
       `<div class="alert alert-${type} alert-dismissible" role="alert">`,
       `   <div>${message}</div>`,
       '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
-      '</div>'
-    ].join('')
+      "</div>",
+    ].join("");
 
-    alertPlaceholder.append(wrapper)
-  }
-  appendAlert(message, type)
+    alertPlaceholder.append(wrapper);
+  };
+  appendAlert(message, type);
 }
 //--
 
@@ -293,7 +318,7 @@ function CartelDeError(index,message, type){
 listaUsuarios.addEventListener("click", (e) => {
   if (e.target.classList.contains("eliminarusuario")) {
     const usuario = e.target.dataset.usuario; // Obtenemos el usuario a eliminar
-    const toastTrigger = document.getElementById(`primerEliminar`+usuario);
+    const toastTrigger = document.getElementById(`primerEliminar` + usuario);
     const toastLiveExample = document.getElementById("liveToast" + usuario);
     if (toastTrigger) {
       const toastBootstrap =
@@ -306,7 +331,6 @@ listaUsuarios.addEventListener("click", (e) => {
 
   // Segmento que confirma el borrado del Usuario
   if (e.target.classList.contains("eliminarusuarioConfirmado")) {
-
     const usuario = e.target.dataset.usuario; // Obtenemos el usuario a eliminar
     const index = usuarios.findIndex((p) => p.usuario === usuario);
 
@@ -333,8 +357,10 @@ function listarUsuarios() {
                 <td class="align-middle">${usuario.email}</td>
                 <td class="align-middle">*********</td>
                 <td>
-                ${ usuario.usuario === `admin` ? `` : 
-                    `
+                ${
+                  usuario.usuario === `admin`
+                    ? ``
+                    : `
                   <button 
                     type="button" 
                     class="btn btn-outline-primary editarUsuario" 
@@ -355,7 +381,8 @@ function listarUsuarios() {
                         <i class="bi bi-trash3 eliminarusuario" 
                         data-usuario="${usuario.usuario}"></i>
                   </button>
-                `}
+                `
+                }
                 
                 <!-- Modal -->
                 <div 
@@ -442,7 +469,7 @@ function listarUsuarios() {
                           type="button" 
                           class="btn btn-success guardarCambios" 
                           data-usuario="${usuario.usuario}"
-                          
+
                         >
                             Guardar Cambios
                         </button>
@@ -452,7 +479,9 @@ function listarUsuarios() {
                 </div>
                 <!-- Toast -->
                 <div class="toast-container position-fixed bottom-0 end-0 p-3">
-                  <div id="liveToast${usuario.usuario}" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                  <div id="liveToast${
+                    usuario.usuario
+                  }" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
                     <div class="toast-header">
                       <strong class="me-auto">Alerta de borrado</strong>
                       <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
@@ -465,7 +494,9 @@ function listarUsuarios() {
                       type="button" 
                       class="btn btn-danger mt-3 eliminarusuarioConfirmado" 
                       data-usuario="${usuario.usuario}">
-                        <i class="bi bi-trash3 eliminarusuarioConfirmado" data-id="${usuario.usuario}"></i> Eliminar                    
+                        <i class="bi bi-trash3 eliminarusuarioConfirmado" data-id="${
+                          usuario.usuario
+                        }"></i> Eliminar                    
                       </button>
                     </div>
                   </div>
@@ -504,7 +535,9 @@ function listarProductos() {
                   </a>
                 </td>
                 <td class="align-middle">
-                  <button type="button" class="btn btn-outline-primary editar" data-id="${producto.id}">
+                  <button type="button" class="btn btn-outline-primary editar" data-id="${
+                    producto.id
+                  }">
                     <i class="bi bi-pencil editar" data-id="${producto.id}"></i>
                   </button>
                   <button 
