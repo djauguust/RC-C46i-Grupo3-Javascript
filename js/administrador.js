@@ -18,10 +18,9 @@ const btnCancelar = document.getElementById("cancelarEdicion");
 
 
 const listaUsuarios = document.getElementById("listaUsuarios");
-// hay que hacer un segundo formulario para editar usuarios!!!
 
 const obtenerProductos = localStorage.getItem("productos");
-const obtenerUsuarios = localStorage.getItem("usuarios");
+const obtenerUsuarios = localStorage.getItem("usuario");
 //--
 
 // Leo el LocalStorage, listo los productos y los usuarios
@@ -507,7 +506,7 @@ function listarUsuarios() {
               `;
     listaUsuarios.querySelector("tbody").appendChild(tr);
   });
-  localStorage.setItem("usuarios", JSON.stringify(usuarios));
+  localStorage.setItem("usuario", JSON.stringify(usuarios));
 }
 //--
 
