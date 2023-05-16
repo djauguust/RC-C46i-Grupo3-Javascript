@@ -42,26 +42,30 @@
                             <form id="registroForm">
                                 <div class="mb-3 ">
                                     <label class="form-label">Nombre de Usuario</label>
-                                    <input type="text" class="form-control" placeholder="example" id="inputUserReg"
+                                    <input type="username" class="form-control" placeholder="Escriba su usuario" id="username"
                                         minlength="3" maxlength="20" required>
                                     <div class="valid-feedback">
                                         Buen nombre!
                                     </div>
                                     <div class="mb-3">
                                         <label for="Email" class="form-label">Correo Electrónico:</label>
-                                        <input type="Email" class="form-control" id="email"
-                                            placeholder="example@example.com"
-                                            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$" required>
-                                    </div>
+                                        <input type="Email" class="form-control" id="email1"
+                                            placeholder="@ejemplo.com"
+                                          required>
+                                     
                                     <div class="mb-3">
                                         <label class="form-label">Password "Digitos, minusculas y mayusculas, entre 8-16
                                             caracteres"</label>
-                                        <input type="password" class="form-control" placeholder="Password"
-                                            id="inputPassReg" required>
+                                        <input type="password" class="form-control" placeholder="contraseña"
+                                            id="password" required>
+
+                                            
+                                            <input type="password" class="form-control my-2" placeholder="Repita su contraseña"
+                                                id="password2" required>
                                     </div>
                                     <!-- Agrega más campos si lo deseas -->
 
-                                    <button type="submit" class="btn btn-outline-warning">Registrarse</button>
+                                    <button type="submit" class="btn btn-outline-warning" id="botonRegistrar">Registrarse</button>
                             </form>
                         </div>
                     </div>
