@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
+
+
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -13,7 +15,86 @@
     />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
   </head>
-  <body>
+
+<body>
+    <!-- inicio navbar -->
+
+    <nav class="navbar navbar-expand-md bg-body-tertiary">
+        <div class="container-fluid bg-secondary-subtle">
+
+            <!-- icono/logo -->
+            <a class="navbar-brand " href="index.html"> <!-- el logo lleva a pag principal -->
+                <img class="  mx-auto d-block" width="85" height="85"
+                    src="https://cdn-icons-png.flaticon.com/512/410/410208.png?w=740&t=st=1683328904~exp=1683329504~hmac=02e7234aa35be87d431e1136a7b84c3e1c8598a74e63d578efb374a5e05785b8"
+                    alt="" />
+            </a>
+
+            <!-- boton menu hambur -->
+            <button class="navbar-toggler " type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Elementos boton hambur -->
+            <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+
+
+                    <!-- admin -->
+                    <li class="nav-item">
+                        <a class="nav-link" id="linkAdmin" href="#">ADMIN</a>
+                    </li>
+
+                    <!-- menu categorias-->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            CATEGORIAS
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Remeras</a></li>
+                            <li><a class="dropdown-item" href="#">Tazas</a></li>
+                            <li><a class="dropdown-item" href="#">Funkos</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- nosotros -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">NOSOTROS</a>
+                    </li>
+
+                    <!-- fav -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <span class="">FAVORITOS <i class="bi bi-heart"></i></span>
+                        </a>
+                    </li>
+
+                    <!-- Registro -->
+                    <li class="nav-item">
+                        <a class="nav-link text-warning fw-bold" id="linkRegistro" href="#">REGISTRARSE</a>
+                    </li>
+
+                    <!-- IS: debe ser un boton-->
+                    <li class="nav-item">
+                        <button type="button" class="btn btn-outline-warning" id="btnIniciarSesion" type="submit">INICIAR SESIÓN</button>
+                    </li>
+
+                    <!-- Logout boton-->
+                    <li class="nav-item">
+                        <button type="button" class="btn btn-outline-warning" id="btnCerrarSesion">
+                            <i class="bi bi-box-arrow-right"></i>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+
+
+
+        </div>
+    </nav>
+
     <!-- CARDS DE PRODUCTOS CREADOS QUE SE MOSTRARAN EN LA PAGINA PRINCIPAL -->
       <h2 class="text-center">Catalogo de productos:</h2>
       <div class="catalogo text-center mb-5">
@@ -190,3 +271,4 @@
     ></script>
   </body>
 </html>
+
