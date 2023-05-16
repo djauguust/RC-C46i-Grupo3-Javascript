@@ -20,16 +20,26 @@ filtro.addEventListener('change', function() {
   mostrarProductos(opcionSeleccionada);
 });
 
+//FILTRO POR TEXTO 
+
+buscador.addEventListener('input', function() {
+  const textoBusqueda = buscador.value.toLowerCase();
+  const opcionSeleccionada = filtro.value;
+  mostrarProductos(opcionSeleccionada, textoBusqueda);
+});
 
 //FUNCION PARA MOSTRAR PRODUCTOS FILTRADOS
 
-function mostrarProductos(categoria) {
+function mostrarProductos(categoria,textoBusqueda = '') {
   let productosFiltrados = [];
   if (categoria == 'todos') {
     productosFiltrados = productosLS;
   } else {
     productosFiltrados = productosLS.filter(producto => producto.category == categoria);
   }
+
+  productosFiltrados = productosFiltrados.filter(producto => producto.name.toLowerCase().includes(textoBusqueda));
+
   let cardHTML = "";
   productosFiltrados.forEach((producto) => {
     cardHTML += `
