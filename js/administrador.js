@@ -280,7 +280,6 @@ listaUsuarios.addEventListener("click", (e) => {
       contraseniaNueva === contraseniaNueva2 &&
       contraseniaNueva.length > 8
     ) {
-      console.log(`1`);
       const userEdit = usuarios[index];
       userEdit.email = emailNuevo;
       userEdit.contrasenia = contraseniaNueva;
