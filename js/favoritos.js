@@ -51,9 +51,9 @@ favoritosLS.forEach((producto) =>{
         <h6 class="text-success">Free shipping</h6>
         <div class="d-flex flex-column mt-4">
           <!--botones-->
-          <button class="btn btn-outline-warning btn-sm mt-2" type="button">
+          <a class="btn btn-outline-warning btn-sm mt-2" type="button" href="detalle.html?name=${producto.name}&price=${producto.price}&url=${producto.url}&description=${producto.description}&categoria=${producto.category}&id=${producto.id}">
               MÁS DETALLES
-              </button>
+              </a>
               <a class="btn btn-warning btn-sm mt-2" type="button" href="error404.html"> AGREGAR AL CARRITO</a>
           <button type="button" class="btn btn-danger btn-sm mt-2 boton-eliminar" id="${producto.id}">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heartbreak" viewBox="0 0 16 16">
@@ -110,6 +110,12 @@ ${cardFavorito}
           });
         }
       });
+
+      if (favoritosLS.length == 0){
+        favoritosHTML.innerHTML = `<div class="alert alert-warning w-50 m-auto mt-3" role="alert">
+        No tienes productos en favoritos.
+      </div>`
+      }
       
 
       

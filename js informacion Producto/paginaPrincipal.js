@@ -20,6 +20,7 @@ filtro.addEventListener('change', function() {
   mostrarProductos(opcionSeleccionada);
 });
 
+
 //FUNCION PARA MOSTRAR PRODUCTOS FILTRADOS
 
 function mostrarProductos(categoria) {
@@ -30,7 +31,6 @@ function mostrarProductos(categoria) {
     productosFiltrados = productosLS.filter(producto => producto.category == categoria);
   }
   let cardHTML = "";
-
   productosFiltrados.forEach((producto) => {
     cardHTML += `
       <div class="col-lg-3 mt-3">
@@ -88,4 +88,5 @@ function agregarAFavoritos(producto) {
 }
 }
 }
+
 mostrarProductos('todos');
