@@ -14,9 +14,9 @@ const linkRegistro = document.getElementById("linkRegistro");
 const btnCerrarSesion = document.getElementById("btnCerrarSesion");
 const btnIniciarSesion = document.getElementById("btnIniciarSesion");
 
-console.log(usuarioLogeado.userLogin);
+console.log(usuarioLogeado);
 /* caso 3*/
-if(usuarioLogeado.userLogin==`none`){
+if(usuarioLogeado[0] == "none"){
     /*caso sin logearse*/
     linkAdmin.className ="d-none";
     btnCerrarSesion.className= "d-none";
@@ -25,18 +25,19 @@ if(usuarioLogeado.userLogin==`none`){
     /*caso de logeo sin admin*/
     linkRegistro.className ="d-none";
     btnIniciarSesion.className = "d-none";
-    if(usuarioLogeado.userLogin==`admin`){
+    if(usuarioLogeado[0] == "admin"){
         /*caso admin */
-
+        linkAdmin.className = "";
     }else{
-    linkAdmin.className ="d-none";
+        linkAdmin.className ="d-none";
     }
 } 
 
 btnCerrarSesion.addEventListener("click", (e) => {
-    if (usuarioLogeado !==`none`) {
-        usuarioLogeado = [`none`]
+    if (usuarioLogeado[0] !== "none") {
+        usuarioLogeado = ["none"];
         localStorage.setItem("userLogin", JSON.stringify(usuarioLogeado));
         localStorage.removeItem("user");
         window.location.replace("index.html");
-        } })
+    }
+});
