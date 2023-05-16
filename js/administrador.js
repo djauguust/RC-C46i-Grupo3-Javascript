@@ -16,6 +16,7 @@ const promocionarProducto = document.getElementById("promocion1");
 const addButton = document.getElementById("addProductButton");
 const btnCancelar = document.getElementById("cancelarEdicion");
 
+
 const listaUsuarios = document.getElementById("listaUsuarios");
 // hay que hacer un segundo formulario para editar usuarios!!!
 
@@ -136,6 +137,7 @@ addButton.addEventListener("click", (e) => {
     const index = parseInt(
       productos.findIndex((producto) => producto.id === editId)
     );
+
     if (index !== -1) {
       // Si el producto existe
       const product = productos[index]; // Obtenemos el producto a editar del array
@@ -147,6 +149,7 @@ addButton.addEventListener("click", (e) => {
       product.promotion = promotion;
       product.category = category;
     }
+
 
     // Sacamos el botón Cancelar
     btnCancelar.className = "d-none";
@@ -469,7 +472,6 @@ function listarUsuarios() {
                           type="button" 
                           class="btn btn-success guardarCambios" 
                           data-usuario="${usuario.usuario}"
-
                         >
                             Guardar Cambios
                         </button>
@@ -578,3 +580,4 @@ function listarProductos() {
   localStorage.setItem("productos", JSON.stringify(productos));
 }
 //--
+

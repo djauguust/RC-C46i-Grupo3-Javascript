@@ -1,0 +1,27 @@
+/* HOJA CSS DE DETALLE.HTML*/
+ 
+.card-img-top{
+    height: 40vh; 
+    object-fit: cover;
+}
+
+.carousel {
+    width: 85%;
+    margin: 0 auto;
+}
+
+.carousel-control-next{
+    left: 95%;
+}
+
+@media(max-width: 360px){
+    .imagen-personalizada{
+        width: 100%;
+    }
+    .card {
+        width: 100% !important;
+    }
+    .card-img-top{
+        height: 100%;
+    }
+}
