@@ -18,18 +18,18 @@ console.log(usuarioLogeado);
 /* caso 3*/
 if(usuarioLogeado[0] == "none"){
     /*caso sin logearse*/
-    linkAdmin.className ="d-none";
+    linkAdmin.className ="nav-link d-none";
     btnCerrarSesion.className= "d-none";
 
 } else {
     /*caso de logeo sin admin*/
-    linkRegistro.className ="d-none";
+    linkRegistro.className ="nav-link d-none";
     btnIniciarSesion.className = "d-none";
     if(usuarioLogeado[0] == "admin"){
         /*caso admin */
-        linkAdmin.className = "";
+        linkAdmin.className = "nav-link";
     }else{
-        linkAdmin.className ="d-none";
+        linkAdmin.className ="nav-link d-none";
     }
 } 
 
