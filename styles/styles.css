@@ -6,13 +6,15 @@
 }
 
 .carousel {
-    width: 85%;
-    margin: 0 auto;
+    width: 100%;
+    height: 300px;   
+    margin: 0;
 }
-
-.carousel-control-next{
-    left: 95%;
+.imgcar{
+    height: 300px;
+    width: 100%;
 }
+    
 
 @media(max-width: 360px){
     .imagen-personalizada{
