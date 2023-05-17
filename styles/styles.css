@@ -14,3 +14,14 @@
     height: 300px;
     width: 100%;
 }
+.card {
+    background-color: var(--second-color);
+    color: var(--main-color);
+    
+  }
+
+  .card-img {
+    width: 100%;
+    height: auto;
+  }
+  
