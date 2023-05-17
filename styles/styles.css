@@ -14,17 +14,3 @@
     height: 300px;
     width: 100%;
 }
-
-    
-
-@media(max-width: 360px){
-    .imagen-personalizada{
-        width: 100%;
-    }
-    .card {
-        width: 100% !important;
-    }
-    .card-img-top{
-        height: 100%;
-    }
-}
