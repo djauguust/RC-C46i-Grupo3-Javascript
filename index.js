@@ -14,7 +14,7 @@ const linkRegistro = document.getElementById("linkRegistro");
 const btnCerrarSesion = document.getElementById("btnCerrarSesion");
 const btnIniciarSesion = document.getElementById("btnIniciarSesion");
 
-console.log(usuarioLogeado);
+
 /* caso 3*/
 if(usuarioLogeado[0] == "none"){
     /*caso sin logearse*/

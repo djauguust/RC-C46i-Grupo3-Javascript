@@ -2,6 +2,7 @@ import { generarCodigoProducto } from "../js/codigoProducto.js";
 
 let productos = [];
 let usuarios = [];
+let usuarioLogueado = [];
 
 // Obtener elementos del DOM
 const listaProductos = document.getElementById("listaProductos");
@@ -21,6 +22,7 @@ const listaUsuarios = document.getElementById("listaUsuarios");
 
 const obtenerProductos = localStorage.getItem("productos");
 const obtenerUsuarios = localStorage.getItem("usuario");
+const obtenerUsuarioLogueado = localStorage.getItem("userLogin");
 //--
 
 // Leo el LocalStorage, listo los productos y los usuarios
@@ -31,6 +33,14 @@ if (obtenerProductos) {
 if (obtenerUsuarios) {
   usuarios = JSON.parse(obtenerUsuarios) || [];
   listarUsuarios();
+}
+
+if (obtenerUsuarioLogueado) {
+  usuarioLogueado = JSON.parse(obtenerUsuarioLogueado) || [];
+}
+
+if (usuarioLogueado[0] !== `admin`){
+  window.location.href = "./error404.html";
 }
 //--
 
