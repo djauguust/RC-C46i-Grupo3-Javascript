@@ -4,16 +4,6 @@ const cardProducto = document.getElementById('cardProducto');
 
 const filtro = document.getElementById('filtro');
 
-const favoritosJSON = localStorage.getItem('favoritos');
-
-
-//VERIFICA SI FAVORITOSJSON TIENE CONTENIDO, SI NO LO SETEA COMO UN ARRAY VACIO
-let favoritos;
-if (favoritosJSON) {
-  favoritos = JSON.parse(favoritosJSON);
-} else {
-  favoritos = [];
-}
 
 // FILTRO POR CATEGORIAS DEL CATALOGO
 filtro.addEventListener('change', function () {
@@ -116,9 +106,9 @@ function mostrarProductos(categoria, textoBusqueda = '') {
   });
   //FUNCION PARA AGREGAR A FAVORITOS 
   function agregarAFavoritos(producto) {
-    const usuarioLogeado = JSON.parse(localStorage.getItem('usuario'));
-    if (usuarioLogeado.email) {
-      const claveUsuario = `favoritos-${usuarioLogeado.email}`;
+    const usuarioLogeado = JSON.parse(localStorage.getItem('userLogin'));
+    if (usuarioLogeado != "none") {
+      const claveUsuario = `favoritos-${usuarioLogeado}`;
       let favoritosUsuario = localStorage.getItem(claveUsuario);
   
       if (!favoritosUsuario) {

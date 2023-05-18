@@ -1,8 +1,8 @@
 const favoritosHTML = document.getElementById('cardFavoritos')
-const usuarioLogeado = JSON.parse(localStorage.getItem('usuario'));
+const usuarioLogeadoActual = JSON.parse(localStorage.getItem('userLogin'));
 
-if (usuarioLogeado.email){
-  const claveUsuario = `favoritos-${usuarioLogeado.email}`;
+if (usuarioLogeadoActual != "none"){
+  const claveUsuario = `favoritos-${usuarioLogeadoActual}`;
   const favoritosUsuario = JSON.parse(localStorage.getItem(claveUsuario))
 
 // CODIGO QUE MUESTRA LA LISTA DE FAVORITOS EN PANTALLA
@@ -113,9 +113,14 @@ ${cardFavorito}
           });
         }
       });
-    }
       if (favoritosUsuario.length == 0){
-        favoritosHTML.innerHTML = `<div class="alert alert-warning w-50 m-auto mt-3" role="alert">
+        favoritosHTML.innerHTML = `<div class="alert alert-warning w-50 m-auto mt-3 mb-3" role="alert">
         No tienes productos en favoritos.
       </div>`
       }
+    }
+    if(usuarioLogeadoActual == "none"){
+      favoritosHTML.innerHTML = `<div class="alert alert-warning w-50 m-auto mt-3 mb-3" role="alert">
+      No tienes productos en favoritos.
+    </div>`
+    }
