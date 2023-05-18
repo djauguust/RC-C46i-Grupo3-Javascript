@@ -3,8 +3,9 @@ function logear() {
   let email = document.getElementById("email").value;
   let pass = document.getElementById("password").value;
   let usuario = JSON.parse(localStorage.getItem("usuario"));
+  let arrayUsuario = JSON.parse(usuario);
 
-  if (email == usuario.email && pass == usuario.contrasenia) {
+  if (email == arrayUsuario.usuario.email && pass == arrayUsuario.usuario.contrasenia) {
     //Muestra mensaje de logeo correcto
     const form = document.querySelector("#form");
 
@@ -27,7 +28,7 @@ function logear() {
     localStorage.setItem("userLogin", JSON.stringify(userLogin));
     // Espera unos segundos segundos antes de redirigir al usuario
     setTimeout(function() {
-        window.location.href = "pagina-principal.html";
+        window.location.href = "../index.html";
       }, 3000);
   }
   //Muestra mensaje de logeo erroneo
