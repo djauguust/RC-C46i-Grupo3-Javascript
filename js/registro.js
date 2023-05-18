@@ -2,34 +2,34 @@ document.getElementById('registroForm').addEventListener('submit', function(even
     event.preventDefault(); // Evita que el formulario se envíe
   
     // Obtén los valores de los campos del formulario
-    const usuario = document.getElementById('usuario').value;
+    const usuario1 = document.getElementById('usuario').value;
     const email = document.getElementById('email').value;
     const contrasenia = document.getElementById('contrasenia').value;
   
     // Crea un objeto de usuario con los datos obtenidos
     const usuarioObjeto = {
-      usuario: usuario,
+      usuario: usuario1,
       email: email,
       contrasenia: contrasenia
     };
   
     // Guarda el objeto de usuario en el local storage
-    localStorage.setItem('usuario', JSON.stringify(usuarioObjeto));
+    localStorage.setItem('usuario1', JSON.stringify(usuarioObjeto));
   
     // Limpia los campos del formulario
     document.getElementById('usuario').value = '';
     document.getElementById('email').value = '';
     document.getElementById('contrasenia').value = '';
  // Obtiene los usuarios existentes del local storage (si los hay)
-    let usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+    let usuario = JSON.parse(localStorage.getItem('usuario')) || [];
   // Validar usuario existente
-  const usuarioExistente = usuarios.find(u => u.usuario === usuario || u.email === email);
+  const usuarioExistente = usuario.find(u => u.usuario1 === usuario1 || u.email === email);
   if (usuarioExistente) {
     alert('El usuario o el email ya están registrados');
     return;
   }
    // Validar que todos los campos estén completos
-   if (!usuario || !email || !contrasenia) {
+   if (!usuario1 || !email || !contrasenia) {
     alert('Por favor, complete todos los campos.');
     return;
   }
@@ -48,9 +48,9 @@ document.getElementById('registroForm').addEventListener('submit', function(even
   }
   
     // Agrega el nuevo usuario al array de usuarios
-    usuarios.push(usuarioObjeto);
+    usuario.push(usuarioObjeto);
     // Guarda el array de usuarios en el local storage
-  localStorage.setItem('usuarios', JSON.stringify(usuarios));
+  localStorage.setItem('usuario', JSON.stringify(usuario));
 
   document.getElementById('usuario').value = '';
   document.getElementById('email').value = '';
