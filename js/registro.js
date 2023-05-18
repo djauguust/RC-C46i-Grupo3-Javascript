@@ -56,6 +56,16 @@ document.getElementById('registroForm').addEventListener('submit', function(even
   document.getElementById('email').value = '';
   document.getElementById('contrasenia').value = '';
   
-  alert('Usuario registrado correctamente');
+  Swal.fire({
+    title: "Usuario registrado correctamente",
+    icon: "success",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+  });
+  // Espera unos segundos segundos antes de redirigir al usuario
+  setTimeout(function () {
+    window.location.href = "../login.html";
+  }, 3000);
     
   });

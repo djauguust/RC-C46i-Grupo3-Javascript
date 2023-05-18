@@ -2,7 +2,7 @@
 function logear() {
   let email = document.getElementById("email").value;
   let pass = document.getElementById("password").value;
-  let usuario = JSON.parse(localStorage.getItem("usuario"));
+  let usuario = JSON.parse(localStorage.getItem("usuarios"));
   let userComparation = usuario.find((p) => p.email === email);
 
   if (!userComparation) {
