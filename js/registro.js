@@ -1,11 +1,12 @@
-document.getElementById('registroForm').addEventListener('submit', function(event) {
-    event.preventDefault(); // Evita que el formulario se envíe
+import { CartelGigante } from "./codigoProducto.js";
+
+document.getElementById("botonRegistrar").addEventListener("click", (e) => {
+  validacionBootstrap();
   
     // Obtén los valores de los campos del formulario
     const usuario1 = document.getElementById('usuario').value;
     const email = document.getElementById('email').value;
     const contrasenia = document.getElementById('contrasenia').value;
-  
     // Crea un objeto de usuario con los datos obtenidos
     const usuarioObjeto = {
       usuario: usuario1,
@@ -23,27 +24,47 @@ document.getElementById('registroForm').addEventListener('submit', function(even
  // Obtiene los usuarios existentes del local storage (si los hay)
     let usuario = JSON.parse(localStorage.getItem('usuario')) || [];
   // Validar usuario existente
-  const usuarioExistente = usuario.find(u => u.usuario1 === usuario1 || u.email === email);
+  const usuarioExistente = usuario.find(u => u.usuario === usuario1 );
+  const usuarioExistente2 = usuario.find(u =>  u.email === email);
   if (usuarioExistente) {
-    alert('El usuario o el email ya están registrados');
+    CartelGigante(
+      `¡El usuario ya está registrado!`,
+      `error`
+    );
+    return;
+  }
+  if (usuarioExistente2) {
+    CartelGigante(
+      `¡El email ya está registrado!`,
+      `error`
+    );
     return;
   }
    // Validar que todos los campos estén completos
    if (!usuario1 || !email || !contrasenia) {
-    alert('Por favor, complete todos los campos.');
+    CartelGigante(
+      `Por favor, complete todos los campos`,
+      `error`
+    );
     return;
   }
 
   // Validar el formato del email
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!email.match(emailRegex)) {
-    alert('Por favor, ingrese un email válido.');
+    CartelGigante(
+      `Por favor, ingrese un email válido`,
+      `error`
+    );
     return;
   }
 
   // Validar la contraseña (ejemplo: longitud mínima de 8 caracteres)
   if (contrasenia.length < 8) {
-    alert('La contraseña debe tener al menos 8 caracteres.');
+    CartelGigante(
+      `La contraseña debe tener al menos 8 caracteres`,
+      `error`
+    );
     return;
   }
   
@@ -69,3 +90,28 @@ document.getElementById('registroForm').addEventListener('submit', function(even
   }, 3000);
     
   });
+
+  // Función validación Bootstrap
+function validacionBootstrap() {
+  "use strict";
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  const forms = document.querySelectorAll(".needs-validation");
+
+  // Loop over them and prevent submission
+  Array.from(forms).forEach((form) => {
+    form.addEventListener(
+      "submit",
+      (event) => {
+        if (!form.checkValidity()) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+
+        form.classList.add("was-validated");
+      },
+      false
+    );
+  });
+}
+//--

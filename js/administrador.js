@@ -612,7 +612,7 @@ function listarProductos() {
 //--
 
 // Función para mostrar carteles al agregar/modificar productos/usuarios
-function CartelGigante(mensaje2, tipo) {
+export function CartelGigante(mensaje2, tipo) {
   // tipo debe ser: error o success
   Swal.fire({
     title: `¡Listo!`,
