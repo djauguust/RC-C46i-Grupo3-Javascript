@@ -3,6 +3,11 @@ import { generarCodigoProducto } from "./codigoProducto.js";
 let productos = [];
 let usuarios = [];
 let usuarioLogueado = [];
+let usuarioAdmin = {
+  usuario: `admin`,
+  email: `admin@admin`,
+  contrasenia: `admin123`
+};
 
 // Obtener elementos del DOM
 const listaProductos = document.getElementById("listaProductos");
@@ -29,8 +34,12 @@ if (obtenerProductos) {
   productos = JSON.parse(obtenerProductos) || [];
   listarProductos();
 }
+
 if (obtenerUsuarios) {
   usuarios = JSON.parse(obtenerUsuarios) || [];
+  listarUsuarios();
+} else {
+  usuarios = [usuarioAdmin];
   listarUsuarios();
 }
 
@@ -42,7 +51,6 @@ if (usuarioLogueado[0] !== `admin`) {
   window.location.href = "./error404.html";
 }
 //--
-
 // Función return Categoria
 function retornaCategoria(c) {
   for (const f of c) {
