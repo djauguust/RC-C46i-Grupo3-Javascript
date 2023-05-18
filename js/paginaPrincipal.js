@@ -1,4 +1,5 @@
-
+const hola = JSON.parse(localStorage.getItem('userLogin'))
+console.log(hola[0])
 const productosLS = JSON.parse(localStorage.getItem('productos'));
 
 const cardProducto = document.getElementById('cardProducto');
@@ -77,8 +78,8 @@ function mostrarProductos(categoria, textoBusqueda = '') {
   productosFiltrados.forEach((producto) => {
     const btnFav = document.getElementById(`btnFav-${producto.id}`);
     btnFav.addEventListener('click', function () {
-      const usuarioLogeado = localStorage.getItem('userLogin')
-      if (usuarioLogeado != 'none') {
+      const usuarioLogeado = JSON.parse(localStorage.getItem('userLogin'))
+      if (usuarioLogeado[0] != "none") {
         agregarAFavoritos(producto);
       } else {
         let timerInterval
