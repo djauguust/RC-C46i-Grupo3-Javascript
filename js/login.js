@@ -19,7 +19,7 @@ function logear() {
       event.preventDefault();
     });
     Swal.fire({
-      title: "Bienvenido!" + " " + userComparation.usuario,
+      title: "¡Bienvenido " + userComparation.usuario + "!",
       icon: "success",
       showConfirmButton: false,
       timer: 3000,
