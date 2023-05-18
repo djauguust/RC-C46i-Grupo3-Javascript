@@ -1,5 +1,7 @@
 /* HOJA CSS DE DETALLE.HTML*/
- 
+ body{
+    background-color: #FFFFE0;
+ }
 .card-img-top{
     height: 40vh; 
     object-fit: cover;
@@ -17,7 +19,7 @@
 .card {
     background-color: var(--second-color);
     color: var(--main-color);
-    
+    text-align: center;
   }
 
   .card-img {
