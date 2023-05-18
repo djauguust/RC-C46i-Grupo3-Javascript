@@ -1,124 +1,61 @@
-//clase
-class User {
-  constructor(usuario, email, contraseña) {
-    this.usuario = usuario;
-    this.email = email;
-    this.contraseña = contraseña;
+document.getElementById('registroForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Evita que el formulario se envíe
+  
+    // Obtén los valores de los campos del formulario
+    const usuario = document.getElementById('usuario').value;
+    const email = document.getElementById('email').value;
+    const contrasenia = document.getElementById('contrasenia').value;
+  
+    // Crea un objeto de usuario con los datos obtenidos
+    const usuarioObjeto = {
+      usuario: usuario,
+      email: email,
+      contrasenia: contrasenia
+    };
+  
+    // Guarda el objeto de usuario en el local storage
+    localStorage.setItem('usuario', JSON.stringify(usuarioObjeto));
+  
+    // Limpia los campos del formulario
+    document.getElementById('usuario').value = '';
+    document.getElementById('email').value = '';
+    document.getElementById('contrasenia').value = '';
+ // Obtiene los usuarios existentes del local storage (si los hay)
+    let usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+  // Validar usuario existente
+  const usuarioExistente = usuarios.find(u => u.usuario === usuario || u.email === email);
+  if (usuarioExistente) {
+    alert('El usuario o el email ya están registrados');
+    return;
   }
-}
-
-
-// Accede al formulario de registro
-var registroForm = document.getElementById('registroForm');
-
-
-
-  // Obtén los valores de los campos
-  const forms = document.querySelectorAll(".needs-validation")
-  const usuario = document.getElementById('User').value;
-  const email = document.getElementById('email').value;
-  const contrasenia = document.getElementById('contraseña').value;
- 
-//agregando eventos
-
-inputUsuarioReg.addEventListener("blur", () => {
-  requiredField(inputUsuarioReg);
-});
-
-inputEmailReg.addEventListener("blur", () => {
-  validateEmail(inputEmailReg);
-});
-
-inputPassReg.addEventListener("blur", () => {
-  validatePass(inputPassReg);
-});
-
-formReg.addEventListener("submit", saveUser);
-
-//validaciones
-
-function requiredField(inputUserReg) {
-  if (input.value.trim().length > 0) {
-    input.className = "form-control is-valid";
-    return true;
-  } else {
-    input.className = "form-control is-invalid";
-    return false;
+   // Validar que todos los campos estén completos
+   if (!usuario || !email || !contrasenia) {
+    alert('Por favor, complete todos los campos.');
+    return;
   }
-}
 
-function validateEmail(inputEmailReg) {
-  let regEmail =
-    /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
-  if (regEmail.test(input.value)) {
-    input.className = "form-control is-valid";
-    return true;
-  } else {
-    input.className = "form-control is-invalid";
-    return false;
+  // Validar el formato del email
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!email.match(emailRegex)) {
+    alert('Por favor, ingrese un email válido.');
+    return;
   }
-}
 
-function validatePass(inputPassReg) {
-  let regPass = /^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/;
-  if (regPass.test(input.value)) {
-    input.className = "form-control is-valid";
-    return true;
-  } else {
-    input.className = "form-control is-invalid";
-    return false;
+  // Validar la contraseña (ejemplo: longitud mínima de 8 caracteres)
+  if (contrasenia.length < 8) {
+    alert('La contraseña debe tener al menos 8 caracteres.');
+    return;
   }
-}
+  
+    // Agrega el nuevo usuario al array de usuarios
+    usuarios.push(usuarioObjeto);
+    // Guarda el array de usuarios en el local storage
+  localStorage.setItem('usuarios', JSON.stringify(usuarios));
 
-function gralValidate(inputUser, inputEmail, inputPass) {
-  if (
-    requiredField(inputUser) &&
-    validateEmail(inputEmail) &&
-    validatePass(inputPass)
-  ) {
-    return true;
-  } else {
-    return false;
-  }
-};
-
-function saveUser(e) {
-  e.preventDefault();
-  if (gralValidate(inputUserReg, inputEmailReg, inputPassReg)) {
-    createUser();
-    window.setTimeout(function () {
-      window.location.replace("login.html");
-    }, 1500);
-  } else {
-    alert("Debe completar todos los campos");
-  }
-}
-
-function createUser() {
-  let newUser = new User(
-    inputUserReg.value,
-    inputEmailReg.value,
-    inputPassReg.value
-  );
-  regUser.push(newUser);
-  cleanFormUser();
-  Swal.fire(
-    "Usuario creado",
-    "Su usuario fue correctamente cargado",
-    "success"
-  );
-}
-
-function cleanFormUser() {
-  formReg.reset();
-  inputUsuarioReg.className = "form-control";
-  inputEmailReg.className = "form-control";
-  inputPassReg.className = "form-control";
-  saveUserLS();
-}
-
-function saveUserLS() {
-  localStorage.setItem("regUser", JSON.stringify(regUser));
-};
-
-console.log(inputUsuarioReg);
+  document.getElementById('usuario').value = '';
+  document.getElementById('email').value = '';
+  document.getElementById('contrasenia').value = '';
+  
+  alert('Usuario registrado correctamente');
+    
+  });
