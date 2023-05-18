@@ -18,85 +18,94 @@
     />
   </head>
   <body>
-        <!-- inicio navbar -->
+<!-- inicio navbar -->
+<nav class="navbar navbar-expand-md fixed-top position-relative pt-0 pb-0">
+  <div class="container-fluid bg-secondary-subtle">
+    <!-- icono/logo -->
+    <a class="navbar-brand" href="index.html">
+      <!-- el logo lleva a pag principal -->
+      <img
+        class="mx-auto d-block"
+        width="85"
+        height="85"
+        src="https://cdn-icons-png.flaticon.com/512/410/410208.png?w=740&t=st=1683328904~exp=1683329504~hmac=02e7234aa35be87d431e1136a7b84c3e1c8598a74e63d578efb374a5e05785b8"
+        alt=""
+      />
+    </a>
 
-        <nav class="navbar navbar-expand-md bg-body-tertiary">
-          <div class="container-fluid bg-secondary-subtle">
-  
-              <!-- icono/logo -->
-              <a class="navbar-brand " href="index.html"> <!-- el logo lleva a pag principal -->
-                  <img class="  mx-auto d-block" width="85" height="85"
-                      src="https://cdn-icons-png.flaticon.com/512/410/410208.png?w=740&t=st=1683328904~exp=1683329504~hmac=02e7234aa35be87d431e1136a7b84c3e1c8598a74e63d578efb374a5e05785b8"
-                      alt="" />
-              </a>
-  
-              <!-- boton menu hambur -->
-              <button class="navbar-toggler " type="button" data-bs-toggle="collapse"
-                  data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                  aria-label="Toggle navigation">
-                  <span class="navbar-toggler-icon"></span>
-              </button>
-  
-              <!-- Elementos boton hambur -->
-              <div class="collapse navbar-collapse " id="navbarSupportedContent">
-                  <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-  
-  
-                      <!-- admin -->
-                      <li class="nav-item">
-                          <a class="nav-link" id="linkAdmin" href="./administrador.html">ADMIN</a>
-                      </li>
-  
-                      <!-- menu categorias-->
-                      <li class="nav-item dropdown">
-                          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                              aria-expanded="false">
-                              CATEGORIAS
-                          </a>
-                          <ul class="dropdown-menu">
-                              <li><a class="dropdown-item" href="#">Remeras</a></li>
-                              <li><a class="dropdown-item" href="#">Tazas</a></li>
-                              <li><a class="dropdown-item" href="#">Funkos</a></li>
-                          </ul>
-                      </li>
-  
-                      <!-- nosotros -->
-                      <li class="nav-item">
-                          <a class="nav-link" href="./AboutUs.html">NOSOTROS</a>
-                      </li>
-  
-                      <!-- fav -->
-                      <li class="nav-item">
-                          <a class="nav-link" href="#">
-                              <span class="">FAVORITOS <i class="bi bi-heart"></i></span>
-                          </a>
-                      </li>
-  
-                      <!-- Registro -->
-                      <li class="nav-item">
-                          <a class="nav-link text-warning fw-bold" id="linkRegistro" href="#">REGISTRARSE</a>
-                      </li>
-  
-                      <!-- IS: debe ser un boton-->
-                      <li class="nav-item">
-                          <button type="button" class="btn btn-outline-warning" id="btnIniciarSesion" type="submit">INICIAR SESIÓN</button>
-                      </li>
-  
-                      <!-- Logout boton-->
-                      <li class="nav-item">
-                          <button type="button" class="btn btn-outline-warning" id="btnCerrarSesion">
-                              <i class="bi bi-box-arrow-right"></i>
-                          </button>
-                      </li>
-                  </ul>
-              </div>
-  
-  
-  
-          </div>
-      </nav>
-      <script src="./index.js"></script>
-      <!-- Fin NAVBAR -->
+    <!-- boton menu hambur -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Elementos boton hambur -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <!-- admin -->
+        <li class="nav-item">
+          <a class="nav-link" id="linkAdmin" href="#">ADMIN</a>
+        </li>
+
+        <!-- nosotros -->
+        <li class="nav-item">
+          <a class="nav-link" href="./AboutUs.html">NOSOTROS</a>
+        </li>
+
+        <!-- fav -->
+        <li class="nav-item">
+          <a class="nav-link" href="./favoritos.html">
+            <span class="">FAVORITOS <i class="bi bi-heart"></i></span>
+          </a>
+        </li>
+
+        <!-- Registro -->
+        <li class="nav-item">
+          <a
+            class="nav-link text-warning fw-bold"
+            id="linkRegistro"
+            href="./registro.html"
+            >REGISTRARSE</a
+          >
+        </li>
+
+        <!-- IS: debe ser un boton-->
+        <li class="nav-item">
+          <a href="./login.html"
+            ><button
+              type="button"
+              class="btn btn-outline-warning"
+              id="btnIniciarSesion"
+              type="submit"
+            >
+              INICIAR SESIÓN
+            </button></a
+          >
+        </li>
+
+        <!-- Logout boton-->
+        <li class="nav-item">
+          <button
+            type="button"
+            class="btn btn-outline-warning"
+            id="btnCerrarSesion"
+          >
+            <i class="bi bi-box-arrow-right"></i>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Fin NAVBAR -->
     <div class="container mt-4">
       <div class="row">
         <div class="col-lg-6">
@@ -163,242 +172,11 @@
           </div>
         </div>
       </div>
-      <h3 style="text-align: center">Productos recomendados</h3>
-      <div
-        id="carouselExample"
-        class="carousel mb-5 carousel-dark slide d-none d-lg-block"
-      >
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <div class="row">
-              <div class="col-lg-4 col-md-4">
-                <div class="card text-center" style="width: 100%">
-                  <a href="./error404.html"
-                    ><img
-                      src="./img/remera-bluelock.jpg"
-                      class="card-img-top"
-                      alt="..."
-                  /></a>
-                  <div class="card-body">
-                    <p class="card-text">Remera Chigiri Hyoma</p>
-                    <h3 class="text-warning fw-semibold">$8.000</h3>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-4 col-md-4">
-                <div class="card text-center" style="width: 100%">
-                  <a href="./error404.html"
-                    ><img
-                      src="./img/taza-maestro-roshi.jpg"
-                      class="card-img-top"
-                      alt="..."
-                  /></a>
-                  <div class="card-body">
-                    <p class="card-text">Taza Maestro Roshi</p>
-                    <h3 class="text-warning fw-semibold">$5.000</h3>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-4 col-md-4">
-                <div class="card text-center" style="width: 100%">
-                  <a href="./error404.html"
-                    ><img
-                      src="./img/funko3.jpeg"
-                      class="card-img-top"
-                      alt="..."
-                  /></a>
-                  <div class="card-body">
-                    <p class="card-text">Funko Pop Kakashi</p>
-                    <h3 class="text-warning">$10.000</h3>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="row">
-              <div class="col-lg-4 col-md-4">
-                <div class="card text-center" style="width: 100%">
-                  <a href="./error404.html"
-                    ><img
-                      src="./img/remera-goku.jpg"
-                      class="card-img-top"
-                      alt="..."
-                  /></a>
-                  <div class="card-body">
-                    <p class="card-text">Remera Goku</p>
-                    <h3 class="text-warning fw-semibold">$9.000</h3>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-4 col-md-4">
-                <div class="card text-center" style="width: 100%">
-                  <a href="./error404.html"
-                    ><img
-                      src="./img/remera-yato.jpg"
-                      class="card-img-top"
-                      alt="..."
-                  /></a>
-                  <div class="card-body">
-                    <p class="card-text">Remera Yato</p>
-                    <h3 class="text-warning fw-semibold">$9.500</h3>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-4 col-md-4">
-                <div class="card text-center" style="width: 100%">
-                  <a href="./error404.html"
-                    ><img
-                      src="./img/taza-banana-fish.jpg"
-                      class="card-img-top"
-                      alt="..."
-                  /></a>
-                  <div class="card-body">
-                    <p class="card-text">Taza Banana Fish</p>
-                    <h3 class="text-warning fw-semibold">$4.200</h3>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="row">
-              <div class="col-lg-4 col-md-4">
-                <div class="card text-center" style="width: 100%">
-                  <a href="./error404.html"
-                    ><img
-                      src="./img/camiseta-roja-piccolo-600x600.jpg"
-                      class="card-img-top"
-                      alt="..."
-                  /></a>
-                  <div class="card-body">
-                    <p class="card-text">Remera Piccolo</p>
-                    <h3 class="text-warning fw-semibold">$8.900</h3>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-4 col-md-4">
-                <div class="card text-center" style="width: 100%">
-                  <a href="./error404.html"
-                    ><img
-                      src="./img/funko2.jpeg"
-                      class="card-img-top"
-                      alt="..."
-                  /></a>
-                  <div class="card-body">
-                    <p class="card-text">Funko Tanjiro</p>
-                    <h3 class="text-warning fw-semibold">$4.200</h3>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-4 col-md-4">
-                <div class="card text-center" style="width: 100%">
-                  <a href="./error404.html"
-                    ><img
-                      src="./img/taza-bersek.jpg"
-                      class="card-img-top"
-                      alt="..."
-                  /></a>
-                  <div class="card-body">
-                    <p class="card-text">Taza Bersek</p>
-                    <h3 class="text-warning fw-semibold">$4.200</h3>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <button
-          class="carousel-control-prev"
-          type="button"
-          data-bs-target="#carouselExample"
-          data-bs-slide="prev"
-          style="left: -10%"
-        >
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button
-          class="carousel-control-next"
-          type="button"
-          data-bs-target="#carouselExample"
-          data-bs-slide="next"
-        >
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
-      </div>
-      <!-- CAROUSEL VERISON MOBILE -->
-      <div
-        id="carouselExample1"
-        class="carousel carousel-dark slide d-xs-block d-sm-block d-lg-none"
-      >
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <div class="card text-center m-auto" style="width: 18rem">
-              <img
-                src="./img/remera-bluelock.jpg"
-                class="card-img-top"
-                alt="..."
-              />
-              <div class="card-body">
-                <p class="card-text">Remera Chigiri Hyoma</p>
-                <h3 class="text-warning fw-semibold">$8.000</h3>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="card text-center m-auto" style="width: 18rem">
-              <a href="./error404.html"
-                ><img src="./img/funko4.jpg" class="card-img-top" alt="..."
-              /></a>
-              <div class="card-body">
-                <p class="card-text">Funko Kanao Tsuyuri</p>
-                <h3 class="text-warning fw-semibold">$4.200</h3>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="card text-center m-auto" style="width: 18rem">
-              <a href="./error404.html"
-                ><img
-                  src="./img/remera-goku.jpg"
-                  class="card-img-top personalizada"
-                  alt="..."
-              /></a>
-              <div class="card-body">
-                <p class="card-text">Remera Goku</p>
-                <h3 class="text-warning fw-semibold">$8.900</h3>
-              </div>
-            </div>
-          </div>
-        </div>
-        <button
-          class="carousel-control-prev"
-          type="button"
-          data-bs-target="#carouselExample1"
-          data-bs-slide="prev"
-          style="left: -15%"
-        >
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button
-          class="carousel-control-next"
-          type="button"
-          data-bs-target="#carouselExample1"
-          data-bs-slide="next"
-          style="left: 100%"
-        >
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
-      </div>
-    </div>
+  </div>
 
     <footer>
       <div class="container-fluid position-relative">
-        <div class="row py-4 px-3 bg-warning">
+        <div class="row p-1 bg-warning">
           <div class="col-xs-12 col-md-6 col-lg-3 logo">
             <img
               class="mx-auto d-block"
@@ -472,7 +250,7 @@
             </div>
           </div>
           <div class="col-xs-12 col-md-6 col-lg-3 text-center">
-            <a class="h5 p-4 text-decoration-none" href="./paginas/aboutUs.html"
+            <a class="h5 p-4 text-decoration-none" href="./AboutUs.html"
               >Nosotros</a
             >
           </div>
@@ -554,6 +332,7 @@
       integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
       crossorigin="anonymous"
     ></script>
-    <script src="./js informacion Producto/detalle.js"></script>
+    <script src="./js/detalle.js"></script>
+    <script src="./js/index.js"></script>
   </body>
 </html>
