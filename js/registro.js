@@ -7,6 +7,7 @@ document.getElementById("botonRegistrar").addEventListener("click", (e) => {
     const usuario1 = document.getElementById('usuario').value;
     const email = document.getElementById('email').value;
     const contrasenia = document.getElementById('contrasenia').value;
+    const contrasenia2 = document.getElementById('contrasenia2').value;
     // Crea un objeto de usuario con los datos obtenidos
     const usuarioObjeto = {
       usuario: usuario1,
@@ -21,11 +22,13 @@ document.getElementById("botonRegistrar").addEventListener("click", (e) => {
     document.getElementById('usuario').value = '';
     document.getElementById('email').value = '';
     document.getElementById('contrasenia').value = '';
+    document.getElementById('contrasenia2').value = '';
  // Obtiene los usuarios existentes del local storage (si los hay)
     let usuario = JSON.parse(localStorage.getItem('usuario')) || [];
   // Validar usuario existente
   const usuarioExistente = usuario.find(u => u.usuario === usuario1 );
   const usuarioExistente2 = usuario.find(u =>  u.email === email);
+  
   if (usuarioExistente) {
     CartelGigante(
       `¡El usuario ya está registrado!`,
@@ -63,6 +66,13 @@ document.getElementById("botonRegistrar").addEventListener("click", (e) => {
   if (contrasenia.length < 8) {
     CartelGigante(
       `La contraseña debe tener al menos 8 caracteres`,
+      `error`
+    );
+    return;
+  }
+  if (contrasenia!==contrasenia2) {
+    CartelGigante(
+      `¡Las contraseñas no coinciden!`,
       `error`
     );
     return;
