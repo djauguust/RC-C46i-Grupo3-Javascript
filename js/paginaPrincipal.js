@@ -1,3 +1,5 @@
+const hola = JSON.parse(localStorage.getItem('userLogin'))
+console.log(hola[0])
 const productosLS = JSON.parse(localStorage.getItem('productos'));
 
 const cardProducto = document.getElementById('cardProducto');
@@ -5,6 +7,7 @@ const cardProducto = document.getElementById('cardProducto');
 const filtro = document.getElementById('filtro');
 
 const favoritosJSON = localStorage.getItem('favoritos');
+
 
 //VERIFICA SI FAVORITOSJSON TIENE CONTENIDO, SI NO LO SETEA COMO UN ARRAY VACIO
 let favoritos;
@@ -15,14 +18,14 @@ if (favoritosJSON) {
 }
 
 // FILTRO POR CATEGORIAS DEL CATALOGO
-filtro.addEventListener('change', function() {
+filtro.addEventListener('change', function () {
   const opcionSeleccionada = filtro.value;
   mostrarProductos(opcionSeleccionada);
 });
 
 //FILTRO POR TEXTO 
 
-buscador.addEventListener('input', function() {
+buscador.addEventListener('input', function () {
   const textoBusqueda = buscador.value.toLowerCase();
   const opcionSeleccionada = filtro.value;
   mostrarProductos(opcionSeleccionada, textoBusqueda);
@@ -30,7 +33,7 @@ buscador.addEventListener('input', function() {
 
 //FUNCION PARA MOSTRAR PRODUCTOS FILTRADOS
 
-function mostrarProductos(categoria,textoBusqueda = '') {
+function mostrarProductos(categoria, textoBusqueda = '') {
   let productosFiltrados = [];
   if (categoria == 'todos') {
     productosFiltrados = productosLS;
@@ -69,34 +72,69 @@ function mostrarProductos(categoria,textoBusqueda = '') {
       </div>
     `;
   }
-  
+
   cardProducto.innerHTML = `<div class="container"><div class="row">${cardHTML}</div></div>`;
-//LLAMO A LA FUNCION PARA AGREGAR A FAVORITOS
+  //LLAMO A LA FUNCION PARA AGREGAR A FAVORITOS
   productosFiltrados.forEach((producto) => {
     const btnFav = document.getElementById(`btnFav-${producto.id}`);
     btnFav.addEventListener('click', function () {
+      const usuarioLogeado = JSON.parse(localStorage.getItem('userLogin'))
+      if (usuarioLogeado[0] != "none") {
         agregarAFavoritos(producto);
+      } else {
+        let timerInterval
+        Swal.fire({
+          title: 'Debe estar logeado para realizar esta accion.',
+          html: 'Sera redireccionado',
+          timer: 5000,
+          timerProgressBar: true,
+          showCancelButton: true,
+          cancelButtonText : 'Cancelar',
+          customClass: {
+            cancelButton : 'btn btn-danger'
+          },
+          didOpen: () => {
+            Swal.showLoading()
+            const b = Swal.getHtmlContainer().querySelector('b')
+            timerInterval = setInterval(() => {
+              b.textContent = Swal.getTimerLeft()
+            }, 100)
+          },
+          willClose: () => {
+            clearInterval(timerInterval)
+          }
+        }).then((result) => {
+          /* Read more about handling dismissals below */
+          if (result.dismiss === Swal.DismissReason.timer) {
+            console.log('I was closed by the timer')
+            window.location.href = 'login.html'
+          } else if (result.dismiss === Swal.DismissReason.cancel) {
+            console.log('I was closed by the cancel button');
+          }
+        })
+
+      }
     });
-});
-//FUNCION PARA AGREGAR A FAVORITOS 
-function agregarAFavoritos(producto) {
-  const existeProducto = favoritos.find((productoFav) => productoFav.id == producto.id)
-  if(!existeProducto){
-    favoritos.push(producto);
-    localStorage.setItem('favoritos', JSON.stringify(favoritos));
-    Swal.fire(
-      '',
-      'El producto fue agregado a tu lista de favoritos',
-      'success'
-    )
-}else {
-  Swal.fire(
-    '',
-    'El producto ya existe en tu lista de favoritos',
-    'error'
-  )
-}
-}
+  });
+  //FUNCION PARA AGREGAR A FAVORITOS 
+  function agregarAFavoritos(producto) {
+    const existeProducto = favoritos.find((productoFav) => productoFav.id == producto.id)
+    if (!existeProducto) {
+      favoritos.push(producto);
+      localStorage.setItem('favoritos', JSON.stringify(favoritos));
+      Swal.fire(
+        '',
+        'El producto fue agregado a tu lista de favoritos',
+        'success'
+      )
+    } else {
+      Swal.fire(
+        '',
+        'El producto ya existe en tu lista de favoritos',
+        'error'
+      )
+    }
+  }
 }
 
 mostrarProductos('todos');

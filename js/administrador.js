@@ -1,4 +1,4 @@
-import { generarCodigoProducto } from "./codigoProducto";
+import { generarCodigoProducto } from "./codigoProducto.js";
 
 let productos = [];
 let usuarios = [];
