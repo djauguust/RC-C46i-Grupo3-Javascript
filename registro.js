@@ -8,9 +8,9 @@ console.log(usuarios);
 
 const botonRegistro = document.getElementById("botonRegistrar");
 function saveData() {
-  const username = document.getElementById("username").value;
+  const username = document.getElementById("usuario").value;
   const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
+  const password = document.getElementById("contrasenia").value;
   const password2 = document.getElementById("password2").value;
 
   const usuarioNuevo = {
