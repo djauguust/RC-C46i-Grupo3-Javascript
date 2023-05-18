@@ -17,7 +17,6 @@ const promocionarProducto = document.getElementById("promocion1");
 const addButton = document.getElementById("addProductButton");
 const btnCancelar = document.getElementById("cancelarEdicion");
 
-
 const listaUsuarios = document.getElementById("listaUsuarios");
 
 const obtenerProductos = localStorage.getItem("productos");
@@ -39,7 +38,7 @@ if (obtenerUsuarioLogueado) {
   usuarioLogueado = JSON.parse(obtenerUsuarioLogueado) || [];
 }
 
-if (usuarioLogueado[0] !== `admin`){
+if (usuarioLogueado[0] !== `admin`) {
   window.location.href = "./error404.html";
 }
 //--
@@ -141,6 +140,10 @@ addButton.addEventListener("click", (e) => {
     };
     productos.push(producto);
     localStorage.setItem("productos", JSON.stringify(productos));
+    CartelGigante(
+      `¡El producto "${name}" ha sido creado con éxito!`,
+      `success`
+    );
   } else if (mode === "editar") {
     // Buscamos el indice del producto a editar
     const index = parseInt(
@@ -159,10 +162,13 @@ addButton.addEventListener("click", (e) => {
       product.category = category;
     }
 
-
     // Sacamos el botón Cancelar
     btnCancelar.className = "d-none";
     //-- /Sacamos el botón Cancelar
+    CartelGigante(
+      `¡El producto "${name}" se a modificado con éxito!`,
+      `success`
+    );
   }
 
   agregarProductoForm.dataset.mode = "add"; // Cambiamos el modo del boton
@@ -205,11 +211,16 @@ listaProductos.addEventListener("click", (e) => {
   if (e.target.classList.contains("eliminarproductoConfirmado")) {
     const id = parseInt(e.target.dataset.id); // Obtenemos el id del producto a eliminar
     const index = productos.findIndex((producto) => producto.id === id);
+    const name = productos[index].name;
 
     if (index !== -1) {
       productos.splice(index, 1);
       //agregar la funcion para actualizar la lista de productos.
       listarProductos();
+      CartelGigante(
+        `¡El producto "${name}" ha sido eliminado con éxito!`,
+        `success`
+      );
     }
   }
 });
@@ -276,7 +287,11 @@ listaUsuarios.addEventListener("click", (e) => {
     // Las contraseñas no son validadas
     let regPass = /^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/;
     if (!regPass.test(contraseniaNueva)) {
-      CartelDeError(index, "La contraseña debe ser más segura, debe contener al menos 8 caracteres alfanumericos entre minúsculas, mayúsculas y números", "danger");
+      CartelDeError(
+        index,
+        "La contraseña debe ser más segura, debe contener al menos 8 caracteres alfanumericos entre minúsculas, mayúsculas y números",
+        "danger"
+      );
     }
 
     // Las contraseñas no coinciden
@@ -295,11 +310,13 @@ listaUsuarios.addEventListener("click", (e) => {
       userEdit.contrasenia = contraseniaNueva;
       formEditUser.reset();
       listarUsuarios();
-      /* let btn = document.getElementById("SaveChanges"+index);
-      btn.setAttribute("data-bs-dismiss","modal") */
-      /* let shadow = document.getElementsByClassName("modal-backdrop");
-      shadow.className = "d-none"; */
-      window.location.href = "./administrador.html";
+      CartelGigante(
+        `¡El usuario "${userEdit.usuario}" ha sido modificado con éxito!`,
+        `success`
+      );
+      setTimeout(function () {
+        window.location.href = "./administrador.html";
+      }, 3000);
     }
   }
 });
@@ -344,11 +361,16 @@ listaUsuarios.addEventListener("click", (e) => {
   if (e.target.classList.contains("eliminarusuarioConfirmado")) {
     const usuario = e.target.dataset.usuario; // Obtenemos el usuario a eliminar
     const index = usuarios.findIndex((p) => p.usuario === usuario);
+    const user = usuarios[index].usuario;
 
     if (index !== -1) {
       usuarios.splice(index, 1);
       //agregar la funcion para actualizar la lista de productos.
       listarUsuarios();
+      CartelGigante(
+        `¡El usuario "${user}" ha sido eliminado con éxito!`,
+        `success`
+      );
     }
   }
 });
@@ -589,3 +611,16 @@ function listarProductos() {
 }
 //--
 
+// Función para mostrar carteles al agregar/modificar productos/usuarios
+function CartelGigante(mensaje2, tipo) {
+  // tipo debe ser: error o success
+  Swal.fire({
+    title: `¡Listo!`,
+    text: `${mensaje2}`,
+    icon: `${tipo}`,
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+  });
+}
+//--
