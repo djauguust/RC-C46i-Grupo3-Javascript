@@ -1,9 +1,13 @@
 const favoritosHTML = document.getElementById('cardFavoritos')
-const favoritosLS = JSON.parse(localStorage.getItem('favoritos'));
+const usuarioLogeado = JSON.parse(localStorage.getItem('usuario'));
+
+if (usuarioLogeado.email){
+  const claveUsuario = `favoritos-${usuarioLogeado.email}`;
+  const favoritosUsuario = JSON.parse(localStorage.getItem(claveUsuario))
 
 // CODIGO QUE MUESTRA LA LISTA DE FAVORITOS EN PANTALLA
 let cardFavorito = "";
-favoritosLS.forEach((producto) =>{
+favoritosUsuario.forEach((producto) =>{
     cardFavorito += `
     <section style="background-color: #eee;">
     <div class="container p-1">
@@ -82,8 +86,8 @@ ${cardFavorito}
     document.addEventListener('click', function(event) {
         if (event.target.classList.contains('boton-eliminar')) {
           const productoId = event.target.id;
-          const favoritosLS = JSON.parse(localStorage.getItem('favoritos'));
-          const nuevosFavoritos = favoritosLS.filter(productofav => productofav.id != productoId);
+          const favoritosUsuario = JSON.parse(localStorage.getItem(claveUsuario));
+          const nuevosFavoritos = favoritosUsuario.filter(productofav => productofav.id != productoId);
       
           Swal.fire({
             title: 'Estas seguro?',
@@ -96,7 +100,7 @@ ${cardFavorito}
             confirmButtonText: 'Si, Eliminar!'
           }).then((result) => {
             if (result.isConfirmed) {
-              localStorage.setItem('favoritos', JSON.stringify(nuevosFavoritos));
+              localStorage.setItem(claveUsuario, JSON.stringify(nuevosFavoritos));
       
               Swal.fire(
                 'Eliminado!',
@@ -109,8 +113,8 @@ ${cardFavorito}
           });
         }
       });
-
-      if (favoritosLS.length == 0){
+    }
+      if (favoritosUsuario.length == 0){
         favoritosHTML.innerHTML = `<div class="alert alert-warning w-50 m-auto mt-3" role="alert">
         No tienes productos en favoritos.
       </div>`
