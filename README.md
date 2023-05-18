@@ -18,7 +18,7 @@
 - TucAnime
 - Usuario Administrador
 - - Email: admin@admin
-- - Contraseña: admin
+- - Contraseña: admin123
 
 ## **Librerías usadas**
 - Bootstrap v5.1
