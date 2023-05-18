@@ -1,5 +1,3 @@
-const hola = JSON.parse(localStorage.getItem('userLogin'))
-console.log(hola[0])
 const productosLS = JSON.parse(localStorage.getItem('productos'));
 
 const cardProducto = document.getElementById('cardProducto');
@@ -118,10 +116,22 @@ function mostrarProductos(categoria, textoBusqueda = '') {
   });
   //FUNCION PARA AGREGAR A FAVORITOS 
   function agregarAFavoritos(producto) {
-    const existeProducto = favoritos.find((productoFav) => productoFav.id == producto.id)
+    const usuarioLogeado = JSON.parse(localStorage.getItem('usuario'));
+    if (usuarioLogeado.email) {
+      const claveUsuario = `favoritos-${usuarioLogeado.email}`;
+      let favoritosUsuario = localStorage.getItem(claveUsuario);
+  
+      if (!favoritosUsuario) {
+        favoritosUsuario = [];
+      } else {
+        favoritosUsuario = JSON.parse(favoritosUsuario);
+      }
+  
+
+    const existeProducto = favoritosUsuario.find((productoFav) => productoFav.id == producto.id)
     if (!existeProducto) {
-      favoritos.push(producto);
-      localStorage.setItem('favoritos', JSON.stringify(favoritos));
+      favoritosUsuario.push(producto);
+      localStorage.setItem(claveUsuario, JSON.stringify(favoritosUsuario));
       Swal.fire(
         '',
         'El producto fue agregado a tu lista de favoritos',
@@ -136,5 +146,5 @@ function mostrarProductos(categoria, textoBusqueda = '') {
     }
   }
 }
-
+}
 mostrarProductos('todos');
