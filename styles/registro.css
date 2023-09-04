@@ -1,0 +1,145 @@
+.formitas{
+  margin: 0;
+  padding: 0;
+}
+section{
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background: #ffc107;
+  overflow: hidden;
+}
+section .air{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  background: url(https://1.bp.blogspot.com/-xQUc-TovqDk/XdxogmMqIRI/AAAAAAAACvI/AizpnE509UMGBcTiLJ58BC6iViPYGYQfQCLcBGAsYHQ/s1600/wave.png);
+  background-size: 1000px 100px
+}
+section .air.air1{
+  animation: wave 30s linear infinite;
+  z-index: 1000;
+  opacity: 1;
+  animation-delay: 0s;
+  bottom: 0;
+}
+section .air.air2{
+  animation: wave2 15s linear infinite;
+  z-index: 999;
+  opacity: 0.5;
+  animation-delay: -5s;
+  bottom: 10px;
+}
+section .air.air3{
+  animation: wave 30s linear infinite;
+  z-index: 998;
+  opacity: 0.2;
+  animation-delay: -2s;
+  bottom: 15px;
+}
+section .air.air4{
+  animation: wave2 5s linear infinite;
+  z-index: 997;
+  opacity: 0.7;
+  animation-delay: -5s;
+  bottom: 20px;
+}
+@keyframes wave{
+  0%{
+    background-position-x: 0px; 
+  }
+  100%{
+    background-position-x: 1000px; 
+  }
+}
+@keyframes wave2{
+  0%{
+    background-position-x: 0px; 
+  }
+  100%{
+    background-position-x: -1000px; 
+  }
+}
+
+/* Color principal */
+.body {
+ background-color: #F8F9FA;
+}
+.boton {
+  background-color: #ffc107;
+  
+ 
+}
+
+/* Color de texto */
+.text-body-secondary {
+  color: #6c757d;
+}
+
+/* Color de botón */
+.btn-warning {
+  background-color: #ffc107;
+  border-color: white;
+  color: white;
+  border-bottom: black;
+  
+  
+}
+
+.btn-warning:hover {
+  background-color: #e0a800;
+  border-color: #e0a800;
+  color: #212529;
+}
+
+/* Estilos de formulario */
+.form-control.is-valid {
+  border-color: #198754;
+  background-image: none;
+}
+
+.form-control.is-valid:focus,
+.form-control.is-valid:active {
+  border-color: #198754;
+  box-shadow: 0 0 0 0.25rem rgba(25, 135, 84, 0.25);
+}
+
+.valid-feedback {
+  display: block;
+  width: 100%;
+  margin-top: 0.25rem;
+  font-size: 80%;
+  color: #198754;
+}
+
+/* Estilos de la ventana modal */
+.modal-content {
+  background-color: #F8F9FA;
+}
+
+.modal-title {
+  color: #212529;
+}
+
+.modal-header .btn-close {
+  color: #212529;
+  opacity: 1;
+}
+
+.modal-body {
+  color: #212529;
+}
+
+/* Estilos del botón de registro en la ventana modal */
+.btn-outline-warning {
+  color: black;
+  border-color: #ffc107;
+}
+
+.btn-outline-warning:hover {
+  background-color: #e0a800;
+  border-color: black;
+  color: #212529;
+};

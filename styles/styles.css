@@ -1,0 +1,33 @@
+/* HOJA CSS DE DETALLE.HTML*/
+ body{
+    background-color: #FFFFE0;
+ }
+.card-img-top{
+    height: 40vh; 
+    object-fit: cover;
+}
+
+.carousel {
+    width: 100%;
+    height: 300px;   
+    margin: 0;
+}
+.imgcar {
+    height: 300px;
+    width: 100%;
+}
+.card {
+    background-color: var(--second-color);
+    color: var(--main-color);
+    text-align: center;
+  }
+
+  .card-img {
+    width: 100%;
+    height: auto;
+  }
+
+  h2, label {
+    font-family: 'Fjalla One', sans-serif; 
+  }
+  

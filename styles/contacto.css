@@ -1,0 +1,10 @@
+.card-title{
+   color: rgba(0, 0,0, 0.5);
+   display:flex;
+   position: relative;
+   justify-content:end;
+   text-transform: uppercase;
+   padding: 100px 200px;
+   font-size: 50px;
+   font-weight: 1000;
+}
